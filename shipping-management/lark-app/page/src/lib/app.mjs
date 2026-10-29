@@ -110,7 +110,7 @@ async function importDialog(type){
     if(!preview||preview.errors.length)return;const button=$('confirm-import');button.disabled=true;let saved=0;
     try{
       if(state.version!==version)throw new Error('数据已更新，请重新打开导入并检查预览');
-      const size=bridge?50:5000;
+      const size=bridge?(type==='products'?25:50):5000;
       for(let start=0;start<preview.records.length;start+=size){const batch=preview.records.slice(start,start+size);await commit('master',{type,rows:batch,mode:$('import-mode').value});saved+=batch.length;button.textContent='已保存 '+saved+' / '+preview.records.length+' 行';}
       $('dialog').close();toast('批量导入完成，共 '+saved+' 行');
     }catch(e){toast('已确认完成 '+saved+' 行。'+e.message+'；请核查后重新预览剩余资料，不要整批重复导入');}

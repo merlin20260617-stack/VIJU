@@ -3,7 +3,7 @@ import { invokeDatabaseFunction } from '@lark-base-open/base-database-app-sdk/pa
 import { SDKError } from '@lark-base-open/base-database-app-sdk/shared';
 import type { DatabaseFunctionInputMap as GeneratedFunctionInputs } from "./function-inputs";
 import type { DatabaseFunctionOutputMap as GeneratedFunctionOutputs } from "./function-inputs";
-export const contract = {"version":1,"schemaHash":"sha256:481c4f01c138a8fa0255d53985289b9dfe1aedb74774b44758270c0d8470fd69","remoteContractMatch":"unknown"} as const;
+export const contract = {"version":1,"schemaHash":"sha256:e69adc2ca48cdcf206481b30ad49c3882ded8a73b3637570e0c434f941be728c","remoteContractMatch":"unknown"} as const;
 export type Function0Input = GeneratedFunctionInputs["baseBatches"];
 export type Function0Output = GeneratedFunctionOutputs["baseBatches"];
 export type Function1Input = GeneratedFunctionInputs["baseCustomers"];
@@ -95,3 +95,4 @@ export const functions = {
     return response.data as Function10Output;
   },
 };
+

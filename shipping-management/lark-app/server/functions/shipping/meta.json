@@ -15,7 +15,7 @@
         "description": "workspace读取本人授权仓库的Lark台账；mutate记录实际已发生的仓库业务；reconcile核对上次写入结果，只在台账全部匹配后确认回执，不重放业务写入"
       },
       "commandJson": {
-        "description": "mutate所需业务命令JSON，包含operation、payload、requestId和expectedVersion；其他操作不传。身份及仓库权限由服务端读取，禁止自报身份。",
+        "description": "mutate传业务命令JSON：operation、payload、requestId、expectedVersion；reconcile可传仅含requestId的JSON以核查指定操作；workspace不传。身份及仓库权限均由服务端读取。",
         "type": "string",
         "maxLength": 1048576
       }
@@ -43,9 +43,10 @@
     "sdkVersion": "0.3.2",
     "schemaVendor": "zod",
     "schemaPackageVersion": "4.6.5",
-    "schemaHash": "sha256:37546bb24860b665e785f6b2f926ac5bba886c05c306d90f5366af2ab3159bfc",
+    "schemaHash": "sha256:4c1b3fc46dabed2ea4106daef50ec0ebcc2c2160744a04aa57876bb8f21dff43",
     "fidelity": "complete",
     "mode": "discovery",
     "warnings": []
   }
 }
+

@@ -30,6 +30,8 @@ const fields=(r:Row)=>r as Record<string,JsonValue>;
 function target(name:string){if(!(name in TABLES))return reject('INVALID_TARGET','台账类型无效');return TABLES[name as keyof typeof TABLES];}
 async function finish(ctx:ServerContext,receipt:Row){const result=await ctx.records.update(TABLES.SyncReceipts,{[receipt.record_id]:{Status:'Synced'}});return result.status==='success';}
 export default defineFunction({input,output,handler:async(p,ctx)=>{
+ let writesStarted=false;
+ try{
  const actor=await member(ctx),source=await read(ctx);
  let decoded:ReturnType<typeof decode>;try{decoded=decode(source);}catch{return reject('LEDGER_INVALID','台账数据需要管理员核对，暂不能修改');}
  const {state,receipts}=decoded;
@@ -39,13 +41,18 @@ export default defineFunction({input,output,handler:async(p,ctx)=>{
  if(p.operation==='workspace')return {payload:JSON.stringify(workspace())};
  if(actor.role==='viewer')return reject('READ_ONLY','只读用户不能修改');
  if(p.operation==='reconcile'){
+  let requestId='';if(p.commandJson){try{const supplied=object(JSON.parse(p.commandJson));if(typeof supplied.requestId!=='string'||!/^[-A-Za-z0-9_]{1,120}$/.test(supplied.requestId))return reject('INVALID_REQUEST','核查操作编号无效');requestId=supplied.requestId;}catch{return reject('INVALID_REQUEST','核查操作编号无效');}}
+  writesStarted=true;
   const observed=[];for(const r of pending(receipts)){
    if(actor.role!=='admin'&&r.TransactionVersion==='*')continue;
    const plan=r.details?.plan;if(!Array.isArray(plan)){observed.push({requestId:r.RequestKey,status:'review'});continue;}
    // Read replicas may lag: only a complete match closes a receipt.
    // Missing/conflicting data never triggers resubmission or rollback.
    const ok=matchesPlan(source,plan)&&await finish(ctx,r);observed.push({requestId:r.RequestKey,status:ok?'confirmed':'review'});
-  }return {payload:JSON.stringify({observed,...workspace()})};
+  }
+  const requested=receipts.find(r=>r.RequestKey===requestId);
+  const requestStatus=!requestId?null:requested?(requested.Status==='Synced'||observed.some(r=>r.requestId===requestId&&r.status==='confirmed')?'confirmed':'review'):'not_found';
+  return {payload:JSON.stringify({observed,...workspace(),requestId,requestStatus,checkedAt:new Date().toISOString()})};
  }
  let command:Record<string,any>;try{command=object(JSON.parse(p.commandJson||''));}catch{return reject('INVALID_COMMAND','仓库操作参数无效');}
  if(typeof command.requestId!=='string'||!/^[-A-Za-z0-9_]{1,120}$/.test(command.requestId))return reject('INVALID_REQUEST','操作编号无效');
@@ -62,6 +69,7 @@ export default defineFunction({input,output,handler:async(p,ctx)=>{
  let plan;try{plan=planWrites(source,state,next,command);}catch{return reject('PLAN_INVALID','台账存在重复业务键，请管理员核对');}
  next.version=versionOf(next);next.audit.at(-1).version=next.version;
  const details=JSON.stringify({fingerprint,audit:next.audit.at(-1),plan});if(details.length>80000)return reject('REQUEST_TOO_LARGE','本次数据过多，请减少每批行数后重试');
+ writesStarted=true;
  const receiptResult=await ctx.records.create(TABLES.SyncReceipts,[{RequestKey:command.requestId,Status:'Pending',TransactionVersion:scope,Details:details}]);
  if(receiptResult.status==='failed')return reject('RECEIPT_FAILED','未能建立操作记录，请稍后重试',40002);
  if(receiptResult.status!=='success')return {payload:JSON.stringify({status:'review',requestId:command.requestId})};
@@ -76,5 +84,11 @@ export default defineFunction({input,output,handler:async(p,ctx)=>{
  if(!complete){await ctx.records.update(TABLES.SyncReceipts,{[receiptId]:{Status:'Review'}});return {payload:JSON.stringify({status:'review',requestId:command.requestId})};}
  const finalized=await finish(ctx,{record_id:receiptId});
  return {payload:JSON.stringify({status:finalized?'saved':'review',state:exposed(next,actor),actor,requestId:command.requestId,storage:'lark-base'})};
+ }catch(error){
+  // Only our pre-write business checks are definite failures. Never convert an
+  // exception after a write attempt into permission to retry the operation.
+  if(!writesStarted&&error instanceof SDKError&&[40001,40002,40901].includes(error.wireCode))return {payload:JSON.stringify({status:'rejected',message:error.safeMessage,definite:true,wireCode:error.wireCode})};
+  throw error;
+ }
 }});
 
