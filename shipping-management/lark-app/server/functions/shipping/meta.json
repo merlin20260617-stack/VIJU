@@ -1,0 +1,51 @@
+{
+  "name": "仓库发货事务工作台",
+  "description": "读取本人授权仓库，提交销售订单、主数据和装货撤回事务，或继续同步Lark台账；库存严格校验由独立事务存储执行，禁止传入用户身份、表ID或任意URL",
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "operation": {
+        "type": "string",
+        "enum": [
+          "workspace",
+          "mutate",
+          "sync"
+        ],
+        "description": "workspace读取当前授权仓库；mutate提交一个有操作编号的仓库事务；sync继续处理已提交事务的Lark台账同步"
+      },
+      "commandJson": {
+        "description": "mutate所需业务命令JSON，包含operation、payload、requestId和expectedVersion；其他操作不传。身份及仓库权限由服务端读取，禁止自报身份。",
+        "type": "string",
+        "maxLength": 1048576
+      }
+    },
+    "required": [
+      "operation"
+    ]
+  },
+  "outputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "payload": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "payload"
+    ],
+    "additionalProperties": false
+  },
+  "contract": {
+    "version": 1,
+    "generatorVersion": "1.6.0",
+    "sdkVersion": "0.3.2",
+    "schemaVendor": "zod",
+    "schemaPackageVersion": "4.6.5",
+    "schemaHash": "sha256:ab35aeba000147b5d3d079cb5f8740eebab45506bbe5c6b6b7fac15a35cab035",
+    "fidelity": "complete",
+    "mode": "discovery",
+    "warnings": []
+  }
+}

@@ -4,3 +4,9 @@ node_modules/
 coverage/
 *.log
 tests/fixtures/
+.sites-runtime/
+.wrangler/
+.vinext/
+.next/
+dist/
+*.tsbuildinfo

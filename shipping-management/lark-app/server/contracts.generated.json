@@ -1,0 +1,119 @@
+{
+  "contractFormatVersion": 1,
+  "layout": "workspace",
+  "schemaHash": "sha256:c4adb6102ce73eb23252de073773708ff9322ec00c6b3f062a28b58d086b5278",
+  "functions": [
+    {
+      "functionId": "whoami",
+      "functionType": 1,
+      "input": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      }
+    },
+    {
+      "functionId": "shipping",
+      "functionType": 2,
+      "input": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string",
+            "enum": [
+              "workspace",
+              "mutate",
+              "sync"
+            ],
+            "description": "workspace读取当前授权仓库；mutate提交一个有操作编号的仓库事务；sync继续处理已提交事务的Lark台账同步"
+          },
+          "commandJson": {
+            "description": "mutate所需业务命令JSON，包含operation、payload、requestId和expectedVersion；其他操作不传。身份及仓库权限由服务端读取，禁止自报身份。",
+            "type": "string",
+            "maxLength": 1048576
+          }
+        },
+        "required": [
+          "operation"
+        ]
+      },
+      "output": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "payload": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "payload"
+        ],
+        "additionalProperties": false
+      },
+      "contract": {
+        "version": 1,
+        "generatorVersion": "1.6.0",
+        "sdkVersion": "0.3.2",
+        "schemaVendor": "zod",
+        "schemaPackageVersion": "4.6.5",
+        "schemaHash": "sha256:ab35aeba000147b5d3d079cb5f8740eebab45506bbe5c6b6b7fac15a35cab035",
+        "fidelity": "complete",
+        "mode": "discovery",
+        "warnings": []
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "functionId": "shipping",
+      "functionType": 2,
+      "inputSchema": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string",
+            "enum": [
+              "workspace",
+              "mutate",
+              "sync"
+            ],
+            "description": "workspace读取当前授权仓库；mutate提交一个有操作编号的仓库事务；sync继续处理已提交事务的Lark台账同步"
+          },
+          "commandJson": {
+            "description": "mutate所需业务命令JSON，包含operation、payload、requestId和expectedVersion；其他操作不传。身份及仓库权限由服务端读取，禁止自报身份。",
+            "type": "string",
+            "maxLength": 1048576
+          }
+        },
+        "required": [
+          "operation"
+        ]
+      },
+      "parameterOptions": {
+        "operation": [
+          "workspace",
+          "mutate",
+          "sync"
+        ]
+      }
+    },
+    {
+      "functionId": "whoami",
+      "functionType": 1,
+      "parameters": [],
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "parameterOptions": {}
+    }
+  ],
+  "client": true,
+  "augmentation": "none",
+  "version": 1
+}
