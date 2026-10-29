@@ -1,1 +1,0 @@
-export default function Page(){return <main style={{maxWidth:720,margin:'80px auto',padding:24,fontFamily:'sans-serif'}}><h1>VIJU Shipping Transactions</h1><p>成品仓发货事务服务 · 私有服务</p><p>库存事务、请求回执和Lark台账同步任务由此服务保存。仓管操作请从Lark发货管理平台进入。</p><p>此页不显示业务数据，也不提供库存重置或调试写入入口。</p></main>}

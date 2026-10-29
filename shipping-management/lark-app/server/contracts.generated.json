@@ -1,8 +1,206 @@
 {
   "contractFormatVersion": 1,
   "layout": "workspace",
-  "schemaHash": "sha256:c4adb6102ce73eb23252de073773708ff9322ec00c6b3f062a28b58d086b5278",
+  "schemaHash": "sha256:481c4f01c138a8fa0255d53985289b9dfe1aedb74774b44758270c0d8470fd69",
   "functions": [
+    {
+      "functionId": "baseBatches",
+      "functionType": 1,
+      "input": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "functionId": "baseCustomers",
+      "functionType": 1,
+      "input": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "functionId": "baseEvents",
+      "functionType": 1,
+      "input": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "functionId": "baseFactories",
+      "functionType": 1,
+      "input": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "functionId": "baseOpening",
+      "functionType": 1,
+      "input": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "functionId": "baseOrders",
+      "functionType": 1,
+      "input": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "functionId": "baseProducts",
+      "functionType": 1,
+      "input": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "functionId": "baseReceipts",
+      "functionType": 1,
+      "input": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "functionId": "baseWarehouses",
+      "functionType": 1,
+      "input": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      }
+    },
     {
       "functionId": "whoami",
       "functionType": 1,
@@ -25,9 +223,9 @@
             "enum": [
               "workspace",
               "mutate",
-              "sync"
+              "reconcile"
             ],
-            "description": "workspace读取当前授权仓库；mutate提交一个有操作编号的仓库事务；sync继续处理已提交事务的Lark台账同步"
+            "description": "workspace读取本人授权仓库的Lark台账；mutate记录实际已发生的仓库业务；reconcile核对上次写入结果，只在台账全部匹配后确认回执，不重放业务写入"
           },
           "commandJson": {
             "description": "mutate所需业务命令JSON，包含operation、payload、requestId和expectedVersion；其他操作不传。身份及仓库权限由服务端读取，禁止自报身份。",
@@ -58,7 +256,7 @@
         "sdkVersion": "0.3.2",
         "schemaVendor": "zod",
         "schemaPackageVersion": "4.6.5",
-        "schemaHash": "sha256:ab35aeba000147b5d3d079cb5f8740eebab45506bbe5c6b6b7fac15a35cab035",
+        "schemaHash": "sha256:37546bb24860b665e785f6b2f926ac5bba886c05c306d90f5366af2ab3159bfc",
         "fidelity": "complete",
         "mode": "discovery",
         "warnings": []
@@ -78,9 +276,9 @@
             "enum": [
               "workspace",
               "mutate",
-              "sync"
+              "reconcile"
             ],
-            "description": "workspace读取当前授权仓库；mutate提交一个有操作编号的仓库事务；sync继续处理已提交事务的Lark台账同步"
+            "description": "workspace读取本人授权仓库的Lark台账；mutate记录实际已发生的仓库业务；reconcile核对上次写入结果，只在台账全部匹配后确认回执，不重放业务写入"
           },
           "commandJson": {
             "description": "mutate所需业务命令JSON，包含operation、payload、requestId和expectedVersion；其他操作不传。身份及仓库权限由服务端读取，禁止自报身份。",
@@ -96,9 +294,279 @@
         "operation": [
           "workspace",
           "mutate",
-          "sync"
+          "reconcile"
         ]
       }
+    },
+    {
+      "functionId": "baseBatches",
+      "functionType": 1,
+      "parameters": [
+        {
+          "name": "offset",
+          "kind": "INT",
+          "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+        }
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      },
+      "parameterOptions": {}
+    },
+    {
+      "functionId": "baseCustomers",
+      "functionType": 1,
+      "parameters": [
+        {
+          "name": "offset",
+          "kind": "INT",
+          "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+        }
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      },
+      "parameterOptions": {}
+    },
+    {
+      "functionId": "baseEvents",
+      "functionType": 1,
+      "parameters": [
+        {
+          "name": "offset",
+          "kind": "INT",
+          "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+        }
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      },
+      "parameterOptions": {}
+    },
+    {
+      "functionId": "baseFactories",
+      "functionType": 1,
+      "parameters": [
+        {
+          "name": "offset",
+          "kind": "INT",
+          "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+        }
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      },
+      "parameterOptions": {}
+    },
+    {
+      "functionId": "baseOpening",
+      "functionType": 1,
+      "parameters": [
+        {
+          "name": "offset",
+          "kind": "INT",
+          "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+        }
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      },
+      "parameterOptions": {}
+    },
+    {
+      "functionId": "baseOrders",
+      "functionType": 1,
+      "parameters": [
+        {
+          "name": "offset",
+          "kind": "INT",
+          "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+        }
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      },
+      "parameterOptions": {}
+    },
+    {
+      "functionId": "baseProducts",
+      "functionType": 1,
+      "parameters": [
+        {
+          "name": "offset",
+          "kind": "INT",
+          "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+        }
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      },
+      "parameterOptions": {}
+    },
+    {
+      "functionId": "baseReceipts",
+      "functionType": 1,
+      "parameters": [
+        {
+          "name": "offset",
+          "kind": "INT",
+          "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+        }
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      },
+      "parameterOptions": {}
+    },
+    {
+      "functionId": "baseWarehouses",
+      "functionType": 1,
+      "parameters": [
+        {
+          "name": "offset",
+          "kind": "INT",
+          "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+        }
+      ],
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+          }
+        },
+        "required": [
+          "offset"
+        ],
+        "additionalProperties": false
+      },
+      "parameterOptions": {}
     },
     {
       "functionId": "whoami",

@@ -1,0 +1,13 @@
+{
+  "name": "读取Orders台账分页",
+  "description": "只读分页返回本人角色允许的Orders数据；仓管及只读角色按本人单一WarehouseCodes精确授权，不接受身份或仓库权限参数。业务操作通过shipping执行。",
+  "meta": {
+    "params": [
+      {
+        "name": "offset",
+        "kind": "INT",
+        "description": "固定每页500条的分页偏移，第一页0，后续递增500；服务端限制最多读取10000条。"
+      }
+    ]
+  }
+}

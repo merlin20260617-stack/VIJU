@@ -2,9 +2,7 @@
 
 Independent application and Base; verified IDs come from catalog.json.
 Trusted user identity comes only from whoami / CURRENT_USER_ID().
-The private Sites service is the authoritative transactional inventory store, per the user's explicit approval on 2026-10-29. Base is a synchronized ledger and reporting projection.
-SHIPPING_TX_TOKEN is a server-only secret. Never place it in code, Page, Git, logs or examples.
-Maintain the private owner-only Sites access boundary. Do not widen audience without redesigning machine authentication.
+Updated user instruction: deploy application and business data entirely in Lark. No Sites/Cloudflare or other external runtime dependency. GitHub stores source only. The user accepts one dispatch operator at a time per warehouse; different warehouses may operate independently. Base APIs do not supply transactions/CAS; never claim strict concurrent overship protection. Each non-admin role currently has exactly one warehouse code.
 Unknown writes require reconciliation, not automatic retries. Publish Preview first; production requires experience and authorization of the same Preview artifact.
 <!-- BEGIN:base-app (managed by base-database-cli) -->
 ## Base App 平台指引

@@ -3,23 +3,95 @@ import { invokeDatabaseFunction } from '@lark-base-open/base-database-app-sdk/pa
 import { SDKError } from '@lark-base-open/base-database-app-sdk/shared';
 import type { DatabaseFunctionInputMap as GeneratedFunctionInputs } from "./function-inputs";
 import type { DatabaseFunctionOutputMap as GeneratedFunctionOutputs } from "./function-inputs";
-export const contract = {"version":1,"schemaHash":"sha256:c4adb6102ce73eb23252de073773708ff9322ec00c6b3f062a28b58d086b5278","remoteContractMatch":"unknown"} as const;
-export type Function0Input = GeneratedFunctionInputs["shipping"];
-export type Function0Output = GeneratedFunctionOutputs["shipping"];
-export type Function1Input = GeneratedFunctionInputs["whoami"];
-export type Function1Output = GeneratedFunctionOutputs["whoami"];
+export const contract = {"version":1,"schemaHash":"sha256:481c4f01c138a8fa0255d53985289b9dfe1aedb74774b44758270c0d8470fd69","remoteContractMatch":"unknown"} as const;
+export type Function0Input = GeneratedFunctionInputs["baseBatches"];
+export type Function0Output = GeneratedFunctionOutputs["baseBatches"];
+export type Function1Input = GeneratedFunctionInputs["baseCustomers"];
+export type Function1Output = GeneratedFunctionOutputs["baseCustomers"];
+export type Function2Input = GeneratedFunctionInputs["baseEvents"];
+export type Function2Output = GeneratedFunctionOutputs["baseEvents"];
+export type Function3Input = GeneratedFunctionInputs["baseFactories"];
+export type Function3Output = GeneratedFunctionOutputs["baseFactories"];
+export type Function4Input = GeneratedFunctionInputs["baseOpening"];
+export type Function4Output = GeneratedFunctionOutputs["baseOpening"];
+export type Function5Input = GeneratedFunctionInputs["baseOrders"];
+export type Function5Output = GeneratedFunctionOutputs["baseOrders"];
+export type Function6Input = GeneratedFunctionInputs["baseProducts"];
+export type Function6Output = GeneratedFunctionOutputs["baseProducts"];
+export type Function7Input = GeneratedFunctionInputs["baseReceipts"];
+export type Function7Output = GeneratedFunctionOutputs["baseReceipts"];
+export type Function8Input = GeneratedFunctionInputs["baseWarehouses"];
+export type Function8Output = GeneratedFunctionOutputs["baseWarehouses"];
+export type Function9Input = GeneratedFunctionInputs["shipping"];
+export type Function9Output = GeneratedFunctionOutputs["shipping"];
+export type Function10Input = GeneratedFunctionInputs["whoami"];
+export type Function10Output = GeneratedFunctionOutputs["whoami"];
 declare module '@lark-base-open/base-database-app-sdk/page' { interface FunctionInputMap extends GeneratedFunctionInputs {} }
 export const functions = {
-  ["shipping"]: async (input: Function0Input): Promise<Function0Output> => {
-    const response = await invokeDatabaseFunction("shipping", input);
+  ["baseBatches"]: async (input: Function0Input): Promise<Function0Output> => {
+    const response = await invokeDatabaseFunction("baseBatches", input);
     if (!response || !Number.isSafeInteger(response.code)) throw new SDKError('FUNCTION_RESPONSE_INVALID', 'Invalid Function response', {outcome:'unknown'});
     if (response.code !== 0) throw new SDKError('FUNCTION_INVOKE_FAILED', 'Function invocation failed', String(response.code));
     return response.data as Function0Output;
   },
-  ["whoami"]: async (input: Function1Input): Promise<Function1Output> => {
-    const response = await invokeDatabaseFunction("whoami", input);
+  ["baseCustomers"]: async (input: Function1Input): Promise<Function1Output> => {
+    const response = await invokeDatabaseFunction("baseCustomers", input);
     if (!response || !Number.isSafeInteger(response.code)) throw new SDKError('FUNCTION_RESPONSE_INVALID', 'Invalid Function response', {outcome:'unknown'});
     if (response.code !== 0) throw new SDKError('FUNCTION_INVOKE_FAILED', 'Function invocation failed', String(response.code));
     return response.data as Function1Output;
+  },
+  ["baseEvents"]: async (input: Function2Input): Promise<Function2Output> => {
+    const response = await invokeDatabaseFunction("baseEvents", input);
+    if (!response || !Number.isSafeInteger(response.code)) throw new SDKError('FUNCTION_RESPONSE_INVALID', 'Invalid Function response', {outcome:'unknown'});
+    if (response.code !== 0) throw new SDKError('FUNCTION_INVOKE_FAILED', 'Function invocation failed', String(response.code));
+    return response.data as Function2Output;
+  },
+  ["baseFactories"]: async (input: Function3Input): Promise<Function3Output> => {
+    const response = await invokeDatabaseFunction("baseFactories", input);
+    if (!response || !Number.isSafeInteger(response.code)) throw new SDKError('FUNCTION_RESPONSE_INVALID', 'Invalid Function response', {outcome:'unknown'});
+    if (response.code !== 0) throw new SDKError('FUNCTION_INVOKE_FAILED', 'Function invocation failed', String(response.code));
+    return response.data as Function3Output;
+  },
+  ["baseOpening"]: async (input: Function4Input): Promise<Function4Output> => {
+    const response = await invokeDatabaseFunction("baseOpening", input);
+    if (!response || !Number.isSafeInteger(response.code)) throw new SDKError('FUNCTION_RESPONSE_INVALID', 'Invalid Function response', {outcome:'unknown'});
+    if (response.code !== 0) throw new SDKError('FUNCTION_INVOKE_FAILED', 'Function invocation failed', String(response.code));
+    return response.data as Function4Output;
+  },
+  ["baseOrders"]: async (input: Function5Input): Promise<Function5Output> => {
+    const response = await invokeDatabaseFunction("baseOrders", input);
+    if (!response || !Number.isSafeInteger(response.code)) throw new SDKError('FUNCTION_RESPONSE_INVALID', 'Invalid Function response', {outcome:'unknown'});
+    if (response.code !== 0) throw new SDKError('FUNCTION_INVOKE_FAILED', 'Function invocation failed', String(response.code));
+    return response.data as Function5Output;
+  },
+  ["baseProducts"]: async (input: Function6Input): Promise<Function6Output> => {
+    const response = await invokeDatabaseFunction("baseProducts", input);
+    if (!response || !Number.isSafeInteger(response.code)) throw new SDKError('FUNCTION_RESPONSE_INVALID', 'Invalid Function response', {outcome:'unknown'});
+    if (response.code !== 0) throw new SDKError('FUNCTION_INVOKE_FAILED', 'Function invocation failed', String(response.code));
+    return response.data as Function6Output;
+  },
+  ["baseReceipts"]: async (input: Function7Input): Promise<Function7Output> => {
+    const response = await invokeDatabaseFunction("baseReceipts", input);
+    if (!response || !Number.isSafeInteger(response.code)) throw new SDKError('FUNCTION_RESPONSE_INVALID', 'Invalid Function response', {outcome:'unknown'});
+    if (response.code !== 0) throw new SDKError('FUNCTION_INVOKE_FAILED', 'Function invocation failed', String(response.code));
+    return response.data as Function7Output;
+  },
+  ["baseWarehouses"]: async (input: Function8Input): Promise<Function8Output> => {
+    const response = await invokeDatabaseFunction("baseWarehouses", input);
+    if (!response || !Number.isSafeInteger(response.code)) throw new SDKError('FUNCTION_RESPONSE_INVALID', 'Invalid Function response', {outcome:'unknown'});
+    if (response.code !== 0) throw new SDKError('FUNCTION_INVOKE_FAILED', 'Function invocation failed', String(response.code));
+    return response.data as Function8Output;
+  },
+  ["shipping"]: async (input: Function9Input): Promise<Function9Output> => {
+    const response = await invokeDatabaseFunction("shipping", input);
+    if (!response || !Number.isSafeInteger(response.code)) throw new SDKError('FUNCTION_RESPONSE_INVALID', 'Invalid Function response', {outcome:'unknown'});
+    if (response.code !== 0) throw new SDKError('FUNCTION_INVOKE_FAILED', 'Function invocation failed', String(response.code));
+    return response.data as Function9Output;
+  },
+  ["whoami"]: async (input: Function10Input): Promise<Function10Output> => {
+    const response = await invokeDatabaseFunction("whoami", input);
+    if (!response || !Number.isSafeInteger(response.code)) throw new SDKError('FUNCTION_RESPONSE_INVALID', 'Invalid Function response', {outcome:'unknown'});
+    if (response.code !== 0) throw new SDKError('FUNCTION_INVOKE_FAILED', 'Function invocation failed', String(response.code));
+    return response.data as Function10Output;
   },
 };
