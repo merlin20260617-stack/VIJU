@@ -74,6 +74,17 @@ export function apply(previous, command, actor, now=Date.now()) {
       }
       validateMasters(s);break;
     }
+    case 'masterDelete': {
+      requireThat(actor.role==='admin','仅管理员可删除基础资料');
+      requireThat(['factories','warehouses','products','customers'].includes(p.type),'基础资料类型无效');
+      requireThat(Array.isArray(p.codes)&&p.codes.length>0&&p.codes.length<=200&&new Set(p.codes).size===p.codes.length&&p.codes.every(text),'每次请选择1到200个不同代码');
+      for(const code of p.codes){
+        requireThat(s[p.type].some(r=>r.code===code),'资料不存在或已删除：'+code);
+        const used=p.type==='customers'?s.orders.some(o=>o.customer===code):p.type==='products'?s.orders.some(o=>o.lines.some(l=>l.product===code))||s.batches.some(b=>b.product===code)||s.opening.some(b=>b.product===code):p.type==='factories'?s.warehouses.some(w=>w.factory===code):s.orders.some(o=>o.warehouse===code)||s.batches.some(b=>b.warehouse===code)||s.opening.some(b=>b.warehouse===code);
+        requireThat(!used,'代码 '+code+' 已被订单、入库、库存或仓库资料使用，不能删除；请先核对关联记录');
+      }
+      s[p.type]=s[p.type].filter(r=>!p.codes.includes(r.code));break;
+    }
     case 'order': {
       warehouse(p.warehouse);requireThat(s.customers.some(c=>c.code===p.customer),'客户不存在');
       requireThat(text(p.number)&&/^\d{4}-\d{2}-\d{2}$/.test(p.date)&&day(p.date+'T12:00:00Z')===p.date,'订单号或日期无效');
@@ -113,3 +124,4 @@ export function apply(previous, command, actor, now=Date.now()) {
   s.requests[command.requestId]=fingerprint;
   return s;
 }
+

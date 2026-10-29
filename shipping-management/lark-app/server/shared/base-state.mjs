@@ -26,6 +26,10 @@ export function decode(source){
 }
 export function planWrites(source,previous,next,command){
  const plan=[];const add=(table,key,fields,match)=>{const matches=source[table].filter(match);if(matches.length>1)throw new Error('台账业务键重复，请管理员核对');plan.push({table,key,recordId:matches[0]?.record_id||null,fields});};
+ if(command.operation==='masterDelete'){
+  const table={factories:'Factories',warehouses:'Warehouses',products:'Products',customers:'Customers'}[command.payload.type];
+  for(const code of command.payload.codes){const found=source[table].filter(r=>r.Code===code);if(found.length!==1)throw new Error('待删除资料不存在或重复');plan.push({table,key:code,recordId:found[0].record_id,fields:{},deleted:true});}return plan;
+ }
  if(command.operation==='master'){
   const names={factories:'Factories',warehouses:'Warehouses',products:'Products',customers:'Customers'},type=command.payload.type;
   for(const r of next[type]){const old=previous[type].find(x=>x.code===r.code);if(canonical(old)===canonical(r))continue;add(names[type],r.code,{Code:r.code,Name:r.name,...(type==='warehouses'?{FactoryCode:r.factory}:{}),...(type==='products'?{PcsPerCarton:r.pcsPerCarton,CartonsPerPallet:r.cartonsPerPallet}:{}),SyncVersion:command.requestId},x=>x.Code===r.code);}
@@ -39,6 +43,8 @@ export function planWrites(source,previous,next,command){
  return plan;
 }
 export function matchesPlan(source,plan){return plan.every(p=>{
+ if(p.deleted)return !source[p.table].some(x=>x.record_id===p.recordId||x.Code===p.key);
  const r=source[p.table].find(x=>p.recordId?x.record_id===p.recordId:p.table==='Orders'?x.OrderKey===p.key:p.table==='ProductionBatches'?x.BatchKey===p.key:p.table==='OpeningBalances'?x.Reference===p.key:x.Code===p.key);
  if(!r)return false;return Object.entries(p.fields).filter(([k])=>k!=='SyncVersion'&&k!=='AvailableAt').every(([k,v])=>canonical(r[k]??null)===canonical(v));
 });}
+

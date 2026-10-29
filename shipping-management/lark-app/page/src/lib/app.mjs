@@ -1,9 +1,11 @@
 import {apply,emptyState,day,board,inventory,summary,pallets} from './domain/shipping.mjs';
 import {fields,autoMapping,parseCSV,previewImport} from './domain/import.mjs';
 import {readXlsx} from './xlsx.mjs';
+import customersTemplateUrl from '../assets/templates/customers-template.xlsx?url';
+import productsTemplateUrl from '../assets/templates/products-template.xlsx?url';
 const bridge=window.__vijuBridge;
 const $=id=>document.getElementById(id),key='viju-shipping-preview-v1';
-let boardPage=0; let state=load(),view='board',masterType='customers',reportCustomer='',reportProduct='',reportStart=day(),reportEnd=day();
+let selectedMasters=new Set(); let boardPage=0; let state=load(),view='board',masterType='customers',reportCustomer='',reportProduct='',reportStart=day(),reportEnd=day();
 function load(){if(bridge)return bridge.snapshot;try{const raw=localStorage.getItem(key);return raw?JSON.parse(raw):emptyState();}catch{throw new Error('本地预览数据损坏，请保留浏览器数据并联系开发人员');}}
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const number=v=>Number(v).toLocaleString('en-US'),quantity=o=>o.lines.reduce((n,l)=>n+l.qty,0);
@@ -74,10 +76,22 @@ function orderForm(order){
 function stockForm(type){dialog(type==='opening'?'设置期初库存':'录入生产完成批次',`<form id="stock-form" class="form"><label>仓库<select id="stock-warehouse">${options(state.warehouses,$('warehouse').value)}</select></label><label>产品<select id="stock-product">${options(state.products)}</select></label><label>箱数<input id="stock-qty" type="number" min="1" step="1" required></label><label>${type==='opening'?'期初单号':'生产批次号'}<input id="stock-ref" required maxlength="200"></label>${type==='production'?'<label class="wide">生产完成时间（Africa/Lagos）<input id="produced-at" type="datetime-local" required></label>':'<p class="muted wide">仅限启用前设置；同一仓库产品只能设置一次。</p>'}<div class="actions wide"><button class="primary">确认录入</button></div></form>`);bind('stock-form','submit',e=>{e.preventDefault();perform(type,{warehouse:$('stock-warehouse').value,product:$('stock-product').value,qty:Number($('stock-qty').value),reference:$('stock-ref').value.trim(),...(type==='production'?{producedAt:$('produced-at').value+':00+01:00'}:{})});});}
 function renderAdmin(){
   const labels={customers:'客户',products:'产品',factories:'工厂',warehouses:'仓库'},type=masterType;
-  $('content').innerHTML=`<div class="tabs">${Object.entries(labels).map(([k,v])=>`<button data-master="${k}" class="${k===type?'primary':''}">${v}</button>`).join('')}</div><div class="section-head"><div><h2>${labels[type]}资料</h2><p class="muted">代码按文本存储，保留前导零。看板按当日订单自动分配位置，每页100个客户。</p></div><div><button id="add-master" class="primary">＋ 新增${labels[type]}</button> ${fields[type]?'<button id="import-master">Excel / CSV 批量导入</button> <button id="template">下载CSV模板</button>':''}</div></div><div class="panel">${table(['代码','名称',...(type==='products'?['每箱件数','每板箱数']:type==='warehouses'?['所属工厂']:[]),'操作'],state[type].map(r=>[esc(r.code),esc(r.name),...(type==='products'?[r.pcsPerCarton,r.cartonsPerPallet]:type==='warehouses'?[esc(r.factory)]:[]),`<button data-master-edit="${esc(r.code)}">修改</button>`]))}</div>`;
-  $('content').querySelectorAll('[data-master]').forEach(b=>b.onclick=()=>{masterType=b.dataset.master;render();});
+  $('content').innerHTML=`<div class="tabs">${Object.entries(labels).map(([k,v])=>`<button data-master="${k}" class="${k===type?'primary':''}">${v}</button>`).join('')}</div><div class="section-head"><div><h2>${labels[type]}资料</h2><p class="muted">代码按文本存储，保留前导零。看板按当日订单自动分配位置，每页100个客户。</p></div><div><button id="add-master" class="primary">＋ 新增${labels[type]}</button> ${fields[type]?`<button id="import-master">Excel / CSV 批量导入</button> <a id="template" class="template-download" href="${esc(type==='products'?productsTemplateUrl:customersTemplateUrl)}" download="${type==='products'?'产品':'客户'}导入模板.xlsx">下载Excel模板 (.xlsx)</a>`:''}</div></div><div class="panel">${table(['选择','代码','名称',...(type==='products'?['每箱件数','每板箱数']:type==='warehouses'?['所属工厂']:[]),'操作'],state[type].map(r=>[`<input type="checkbox" data-master-select="${esc(r.code)}" aria-label="选择 ${esc(r.code)}" ${selectedMasters.has(r.code)?'checked':''}>`,esc(r.code),esc(r.name),...(type==='products'?[r.pcsPerCarton,r.cartonsPerPallet]:type==='warehouses'?[esc(r.factory)]:[]),`<button data-master-edit="${esc(r.code)}">修改</button> <button data-master-delete="${esc(r.code)}">删除</button>`]))}</div>`;
+  $('content').querySelectorAll('[data-master]').forEach(b=>b.onclick=()=>{masterType=b.dataset.master;selectedMasters.clear();render();});
   $('content').querySelectorAll('[data-master-edit]').forEach(b=>b.onclick=()=>masterForm(state[type].find(r=>r.code===b.dataset.masterEdit)));
-  bind('add-master','click',()=>masterForm());bind('import-master','click',()=>importDialog(type));bind('template','click',()=>downloadCSV(fields[type].map(x=>x[1]),[],type+'-template.csv'));
+  $('content').querySelector('.section-head').insertAdjacentHTML('afterend',`<div class="bulk-actions"><label><input id="master-select-all" type="checkbox"> 全选当前列表</label><button id="delete-selected" disabled>删除已选资料</button><span id="master-selection-count" class="muted"></span></div>`);
+  const updateSelection=()=>{const count=state[type].filter(r=>selectedMasters.has(r.code)).length;$('delete-selected').disabled=!count;$('delete-selected').textContent='批量删除（'+count+'）';$('master-selection-count').textContent='每次最多200条；已有关联记录的资料不会删除';$('master-select-all').checked=count>0&&count===state[type].length;};
+  $('content').querySelectorAll('[data-master-select]').forEach(c=>c.onchange=()=>{if(c.checked)selectedMasters.add(c.dataset.masterSelect);else selectedMasters.delete(c.dataset.masterSelect);updateSelection();});
+  bind('master-select-all','change',()=>{$('content').querySelectorAll('[data-master-select]').forEach(c=>{c.checked=$('master-select-all').checked;if(c.checked)selectedMasters.add(c.dataset.masterSelect);else selectedMasters.delete(c.dataset.masterSelect);});updateSelection();});
+  $('content').querySelectorAll('[data-master-delete]').forEach(b=>b.onclick=()=>deleteMasterDialog([b.dataset.masterDelete]));
+  bind('delete-selected','click',()=>deleteMasterDialog(state[type].filter(r=>selectedMasters.has(r.code)).map(r=>r.code)));
+  bind('add-master','click',()=>masterForm());bind('import-master','click',()=>importDialog(type));updateSelection();
+
+}
+function deleteMasterDialog(codes){
+  if(!codes.length||codes.length>200){toast('每次请选择1到200条资料');return;}
+  const type=masterType;dialog('确认删除基础资料',`<p>将删除以下 <b>${codes.length}</b> 条资料，请核对代码和名称。已被业务使用的资料会阻止本次删除。删除后无法在页面撤销。</p>${table(['代码','名称'],codes.map(code=>[esc(code),esc(state[type].find(r=>r.code===code)?.name)]))}<div class="actions"><button id="confirm-master-delete" class="danger">确认删除 ${codes.length} 条</button></div>`);
+  bind('confirm-master-delete','click',async()=>{try{await commit('masterDelete',{type,codes});selectedMasters.clear();$('dialog').close();render();toast('已删除所选资料');}catch(e){toast(e.message);}});
 }
 function masterForm(row){
   const type=masterType,spec=fields[type]||[['code','代码'],['name','名称'],...(type==='warehouses'?[['factory','所属工厂']]:[])];
@@ -133,3 +147,4 @@ setInterval(async()=>{if(!$('dialog').open){try{if(bridge)await bridge.refresh()
 render();
 
 if(bridge){$('role').value=bridge.actor.role;$('role').disabled=true;$('seed').hidden=true;document.querySelector('.notice').textContent='已连接 Lark · 先实物发货，再确认已发 · 各仓库独立核算';window.addEventListener('viju-refresh',()=>{state=load();render();});}
+

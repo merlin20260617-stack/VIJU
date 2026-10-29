@@ -56,7 +56,7 @@ export default defineFunction({input,output,handler:async(p,ctx)=>{
  if(command.operation==='order'&&(!Array.isArray(command.payload?.lines)||command.payload.lines.length>100))return reject('LINES_TOO_LARGE','单张订单最多100个产品');
  if(command.operation==='complete'&&(!Array.isArray(command.payload?.ids)||command.payload.ids.length>200))return reject('ORDERS_TOO_LARGE','每次最多确认200张订单');
  let next;try{next=apply(state,command,actor);}catch(e){if(e instanceof BusinessError)return reject('BUSINESS_REJECTED',e.message,command.expectedVersion!==state.version?40901:40001);return reject('INVALID_COMMAND','仓库操作内容无效');}
- const affected=command.operation==='master'?['*']:command.operation==='complete'?next.orders.filter(o=>command.payload.ids.includes(o.id)).map(o=>o.warehouse):command.operation==='withdraw'?[next.orders.find(o=>o.id===command.payload.id)?.warehouse]:[command.payload?.warehouse];
+ const affected=['master','masterDelete'].includes(command.operation)?['*']:command.operation==='complete'?next.orders.filter(o=>command.payload.ids.includes(o.id)).map(o=>o.warehouse):command.operation==='withdraw'?[next.orders.find(o=>o.id===command.payload.id)?.warehouse]:[command.payload?.warehouse];
  const scopes=[...new Set(affected)];if(scopes.length!==1||!scopes[0])return reject('SINGLE_WAREHOUSE','一次操作只能涉及一个仓库');const scope=String(scopes[0]);
  if(pending(receipts,scope).length)return reject('REVIEW_REQUIRED','该仓库有上次操作待核查，请先核查操作结果');
  let plan;try{plan=planWrites(source,state,next,command);}catch{return reject('PLAN_INVALID','台账存在重复业务键，请管理员核对');}
@@ -68,11 +68,13 @@ export default defineFunction({input,output,handler:async(p,ctx)=>{
  const receiptId=receiptResult.appliedIds[0];let complete=true;
  // Each plan touches one business table. Base batches are not transactions.
  for(const table of [...new Set(plan.map(x=>x.table))]){
-  const creates=plan.filter(x=>x.table===table&&!x.recordId),updates=plan.filter(x=>x.table===table&&x.recordId);
+  const creates=plan.filter(x=>x.table===table&&!x.recordId&&!x.deleted),updates=plan.filter(x=>x.table===table&&x.recordId&&!x.deleted),deletes=plan.filter(x=>x.table===table&&x.deleted);
   if(creates.length){const result=await ctx.records.create(target(table),creates.map(x=>fields(x.fields)));if(result.status!=='success'){complete=false;break;}}
   if(updates.length){const result=await ctx.records.update(target(table),Object.fromEntries(updates.map(x=>[x.recordId!,fields(x.fields)])));if(result.status!=='success'){complete=false;break;}}
+  if(deletes.length){const result=await ctx.records.delete(target(table),deletes.map(x=>x.recordId!));if(result.status!=='success'){complete=false;break;}}
  }
  if(!complete){await ctx.records.update(TABLES.SyncReceipts,{[receiptId]:{Status:'Review'}});return {payload:JSON.stringify({status:'review',requestId:command.requestId})};}
  const finalized=await finish(ctx,{record_id:receiptId});
  return {payload:JSON.stringify({status:finalized?'saved':'review',state:exposed(next,actor),actor,requestId:command.requestId,storage:'lark-base'})};
 }});
+
