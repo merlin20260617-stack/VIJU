@@ -11,24 +11,33 @@
           "snapshot",
           "save",
           "import",
-          "attach"
+          "attach",
+          "bulk",
+          "importPreview",
+          "govern"
         ],
-        "description": "snapshot只读加载供应商、物料及供货关系；save维护一条业务记录；import预览或提交受控批量资料；attach追加新附件，均由服务端核验职责"
+        "description": "snapshot只读加载本人有权使用的模块与看板；save维护主数据；import每批提交最多100条；importPreview校验2000行；bulk预览或确认批量修改/受保护删除；govern处理资质、绩效、整改、准入、角色或成员；attach追加附件"
       },
       "target": {
-        "description": "save/import/attach的固定业务对象；technical只更新已有供货关系的技术适配结论，snapshot不传",
+        "description": "固定业务对象；govern使用qualification/evaluation/issue/lifecycle/role/member，其他写操作使用对应主数据；snapshot不传",
         "type": "string",
         "enum": [
           "supplier",
           "material",
           "mapping",
-          "technical"
+          "technical",
+          "qualification",
+          "evaluation",
+          "issue",
+          "lifecycle",
+          "role",
+          "member"
         ]
       },
       "commandJson": {
-        "description": "save传recordId和fields；import传mode(新增/更新)、rows及preview布尔值；attach传recordId及files数组。记录ID来自snapshot；不传身份、表ID或权限。",
+        "description": "save传recordId/fields；import和importPreview传mode(新增/更新)/rows；bulk传action(update/delete)、ids、patch、preview、expectedPreviewKey，删除提交还须confirmation=删除 N 条；attach传recordId/files。ID来自snapshot，不传身份或表ID。",
         "type": "string",
-        "maxLength": 500000
+        "maxLength": 1500000
       }
     },
     "required": [
@@ -54,7 +63,7 @@
     "sdkVersion": "0.3.2",
     "schemaVendor": "zod",
     "schemaPackageVersion": "4.6.5",
-    "schemaHash": "sha256:f3df2c86003d4ee9eafd0da329e7e3ceba74192003341c45f6f92c2f4056030f",
+    "schemaHash": "sha256:37166be8339d5ae8bde2163d80e04e2f1ca4591e5c9e9a6c5ff25d404cf2e2bb",
     "fidelity": "complete",
     "mode": "discovery",
     "warnings": []

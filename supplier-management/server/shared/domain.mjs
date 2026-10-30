@@ -1,5 +1,6 @@
 export const OPTIONS={cooperation:['待核实','合作中','暂停合作','停止合作'],profile:['待补充','已核实'],material:['有效','停用'],critical:['是','否'],supply:['待核实','确认可供应','实际采购过','已失效'],technical:['待技术确认','已验证适配','不适配','不适用']};
 export class BusinessError extends Error{}
+import {has} from './access.mjs';
 const fail=m=>{throw new BusinessError(m)};
 const clean=v=>typeof v==='string'?v.trim():'';
 export const canonical=v=>clean(v).normalize('NFKC').toLowerCase().replace(/\s+/g,' ');
@@ -7,13 +8,14 @@ const str=(p,k,max=3000)=>{const v=clean(p[k]);if(v.length>max)fail(`${k}超过$
 const required=(p,k)=>{const v=str(p,k);if(!v)fail(`请填写${k}`);return v};
 const choice=(p,k,list,fallback)=>{const v=str(p,k)||fallback;if(!list.includes(v))fail(`${k}选项无效`);return v};
 const isId=v=>typeof v==='string'&&/^rec[A-Za-z0-9]{1,32}$/.test(v);
-export function authorize(role,action){
+export function authorize(role,action,permissions){
+ if(permissions){if(!has({permissions},({supplier:'supplier.write',material:'material.write',mapping:'mapping.write',technical:'technical.confirm'})[action]))fail('当前角色无权执行此操作');return;}
  const allowed={supplier:['管理员','采购'],material:['管理员','中央仓'],mapping:['管理员','采购'],technical:['管理员','技术']};
  if(!allowed[action]?.includes(role))fail('当前角色无权执行此操作');
 }
 const keys={supplier:'供应商编号',material:'物料编码',mapping:'关系编号'};
 export function validate(action,input,source,actor){
- authorize(actor.role,action);
+ authorize(actor.role,action,actor.permissions);
  if(!input||typeof input!=='object'||Array.isArray(input))fail('数据格式无效');
  const rid=input.recordId||null;if(rid&&!isId(rid))fail('记录编号无效');
  const table=action==='technical'?'mapping':action,rows=source[table]||[];
@@ -21,11 +23,13 @@ export function validate(action,input,source,actor){
  const p=input.fields;if(!p||typeof p!=='object'||Array.isArray(p))fail('请填写业务字段');
  let out={};
  if(action==='supplier'){
-  out={'供应商编号':required(p,'供应商编号'),'供应商名称':required(p,'供应商名称'),'国家':str(p,'国家')||'Nigeria'};
+  out={'供应商编号':required(p,'供应商编号'),'供应商名称':required(p,'供应商名称'),'国家':str(p,'国家')};
+  out['推广阶段']=choice(p,'推广阶段',['试点','正式'],'试点');
+  out['来源系统']=str(p,'来源系统');out['ERP供应商编码']=str(p,'ERP供应商编码');
   for(const k of ['城市','地址','联系人','电话','WhatsApp','经营范围','负责工厂','维护负责人','质量评价','交付与售后评价','评价依据与问题'])out[k]=str(p,k);
   out['合作状态']=choice(p,'合作状态',OPTIONS.cooperation,'待核实');
   out['资料状态']=choice(p,'资料状态',OPTIONS.profile,'待补充');
-  if(out['资料状态']==='已核实'&&(!out['城市']||!out['联系人']||!out['经营范围']||!(out['电话']||out['WhatsApp'])))fail('已核实供应商须有城市、联系人、联系方式和经营范围');
+  if(out['资料状态']==='已核实'&&(!out['国家']||!out['城市']||!out['联系人']||!out['经营范围']||!(out['电话']||out['WhatsApp'])))fail('已核实供应商须有国家、城市、联系人、联系方式和经营范围');
   if((out['质量评价']||out['交付与售后评价'])&&!out['评价依据与问题'])fail('评价须填写具体依据');
   if(out['资料状态']==='已核实')out['最近核实日期']=actor.today;
   if(rows.some(r=>r.record_id!==rid&&canonical(r['供应商名称'])===canonical(out['供应商名称'])&&canonical(r['城市'])===canonical(out['城市'])))fail('同名同城市供应商已存在，请先核对档案');
@@ -33,6 +37,7 @@ export function validate(action,input,source,actor){
   out={'物料编码':required(p,'物料编码'),'物料名称':required(p,'物料名称')};
   for(const k of ['类别','规格','型号','单位','适用设备与产线','主档来源'])out[k]=str(p,k);
   out['主档状态']=choice(p,'主档状态',OPTIONS.material,'有效');out['关键备件']=choice(p,'关键备件',OPTIONS.critical,'否');
+  out['来源系统']=str(p,'来源系统');out['ERP物料编码']=str(p,'ERP物料编码');
   if(!out['主档来源'])fail('请填写中央仓主档来源');
   out['主档核实日期']=actor.today;
  }else if(action==='mapping'){
@@ -64,9 +69,9 @@ export function validate(action,input,source,actor){
  }
  return {recordId:rid,fields:out};
 }
-export function importPlan(action,mode,rows,source,actor){
+export function importPlan(action,mode,rows,source,actor,limit=100){
  if(!['supplier','material'].includes(action)||!['新增','更新'].includes(mode))fail('导入类型无效');
- authorize(actor.role,action);if(!Array.isArray(rows)||!rows.length||rows.length>100)fail('每次导入1至100条');
+ authorize(actor.role,action,actor.permissions);if(!Array.isArray(rows)||!rows.length||rows.length>limit)fail(`每次导入1至${limit}条`);
  const key=keys[action],seen=new Set(),plans=[],temp={...source,[action]:[...source[action]]};
  for(let i=0;i<rows.length;i++){
   try{

@@ -1,4 +1,5 @@
 SELECT t.rec_id AS record_id,
+(t."推广阶段").name AS "推广阶段",
 t."WhatsApp" AS "WhatsApp",
 t."交付与售后评价" AS "交付与售后评价",
 t."供应商名称" AS "供应商名称",
@@ -18,4 +19,4 @@ t."联系人" AS "联系人",
 t."评价依据与问题" AS "评价依据与问题",
 t."负责工厂" AS "负责工厂",
 t."质量评价" AS "质量评价",
-(t."资料状态").name AS "资料状态" FROM "Suppliers" AS t ORDER BY t.rec_id ASC LIMIT 500 OFFSET $1
+(t."资料状态").name AS "资料状态" FROM "Suppliers" AS t INNER JOIN "Members" AS access_member ON (access_member."用户").id = CURRENT_USER_ID() LEFT JOIN "Roles" AS access_role ON access_member."角色编码" = access_role."角色编码" WHERE (access_member."状态").name = '启用' AND (((access_member."角色编码" IS NULL AND (access_member."角色").name IN ('管理员','采购','中央仓','技术','只读')) OR (access_role."启用" = TRUE AND access_role."权限代码" LIKE '%|supplier.read|%')) OR ((access_member."角色编码" IS NULL AND (access_member."角色").name IN ('管理员','采购','中央仓','技术','只读')) OR (access_role."启用" = TRUE AND access_role."权限代码" LIKE '%|reports.view|%'))) ORDER BY t.rec_id ASC LIMIT 500 OFFSET $1

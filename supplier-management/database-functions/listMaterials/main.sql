@@ -12,4 +12,4 @@ t."物料照片" AS "物料照片",
 t."物料编码" AS "物料编码",
 t."类别" AS "类别",
 t."规格" AS "规格",
-t."适用设备与产线" AS "适用设备与产线" FROM "Materials" AS t ORDER BY t.rec_id ASC LIMIT 500 OFFSET $1
+t."适用设备与产线" AS "适用设备与产线" FROM "Materials" AS t INNER JOIN "Members" AS access_member ON (access_member."用户").id = CURRENT_USER_ID() LEFT JOIN "Roles" AS access_role ON access_member."角色编码" = access_role."角色编码" WHERE (access_member."状态").name = '启用' AND (((access_member."角色编码" IS NULL AND (access_member."角色").name IN ('管理员','采购','中央仓','技术','只读')) OR (access_role."启用" = TRUE AND access_role."权限代码" LIKE '%|material.read|%')) OR ((access_member."角色编码" IS NULL AND (access_member."角色").name IN ('管理员','采购','中央仓','技术','只读')) OR (access_role."启用" = TRUE AND access_role."权限代码" LIKE '%|reports.view|%'))) ORDER BY t.rec_id ASC LIMIT 500 OFFSET $1

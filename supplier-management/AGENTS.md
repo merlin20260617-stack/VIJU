@@ -8,6 +8,6 @@
 server/、server-functions/ 或 contract 变化后先运行 base-database-cli contracts generate，再运行 base-database-cli check --json，再用 base-database-cli deploy 生成 Preview；浏览器验证见 Skill 的 references/verification.md。
 站点开放函数的发现、调用与 agent-tools 策略见已安装 Skill 的 references/agent-tools.md；交付回复以 references/release.md 为准。
 退出自动维护：在 base-database.jsonc 设置 "managedAgentDocs": false，或删除本段标记（保留 .base-database-cli/state/managed-agent-docs.json 退出记录）。
-有新版本 0.5.1 可用（来源 npm registry）。
+有新版本 0.5.2 可用（来源 npm registry）。
 升级前先征得用户同意；能力与行为变化以目标版本包内 docs/ 升级说明为准，不自动修改依赖。
 <!-- END:base-app -->

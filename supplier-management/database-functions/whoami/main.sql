@@ -1,1 +1,1 @@
-SELECT rec_id AS member_id, "成员姓名" AS name, ("用户").id AS user_id, ("角色").name AS role FROM "Members" WHERE ("用户").id = CURRENT_USER_ID() AND ("状态").name = '启用' LIMIT 2
+SELECT a.rec_id AS member_id,a."成员姓名" AS name,(a."用户").id AS user_id,COALESCE(p."角色名称",(a."角色").name) AS role,a."角色编码" AS role_code,p."权限代码" AS permissions,p."启用" AS role_enabled FROM "Members" AS a LEFT JOIN "Roles" AS p ON a."角色编码" = p."角色编码" WHERE (a."用户").id = CURRENT_USER_ID() AND (a."状态").name = '启用' LIMIT 2
