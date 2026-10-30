@@ -1,0 +1,15 @@
+{
+  "name": "查询SupplyMappings",
+  "description": "分页读取SupplyMappings共享业务资料，只读；供应查询使用listSupplyMappings，身份角色使用whoami。",
+  "meta": {
+    "params": [
+      {
+        "name": "offset",
+        "kind": "INT",
+        "minimum": 0,
+        "maximum": 10000,
+        "description": "跳过记录数，第一页0，后续每次增加500；单页固定500条。"
+      }
+    ]
+  }
+}

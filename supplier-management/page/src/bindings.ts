@@ -1,0 +1,2 @@
+export const TABLES={"Members":{"baseToken":"HHqrbkn3MaRi56sicGDjta4aprb","tableId":"tbl3tfTGiL5HX3ri"},"SupplyMappings":{"baseToken":"HHqrbkn3MaRi56sicGDjta4aprb","tableId":"tblVUA1I09mCSjBg"},"Materials":{"baseToken":"HHqrbkn3MaRi56sicGDjta4aprb","tableId":"tblmiWILbWdpO8V3"},"Suppliers":{"baseToken":"HHqrbkn3MaRi56sicGDjta4aprb","tableId":"tblvrNzOh9ykxc9H"}} as const;
+export const FIELDS={"Members":{},"SupplyMappings":{"产品照片与目录":"fldU13UhrB"},"Materials":{"物料照片":"fldLpVoxI9"},"Suppliers":{"供应商附件":"fldxtQa7VX"}} as const;

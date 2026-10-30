@@ -1,0 +1,1 @@
+SELECT rec_id AS member_id, "成员姓名" AS name, ("用户").id AS user_id, ("角色").name AS role FROM "Members" WHERE ("用户").id = CURRENT_USER_ID() AND ("状态").name = '启用' LIMIT 2

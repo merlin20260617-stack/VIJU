@@ -1,0 +1,17 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {validate,importPlan} from './server/shared/domain.mjs';
+const actor={role:'管理员',name:'示例管理员',today:'2026-10-30'};
+const source=()=>({supplier:[{record_id:'recSup1','供应商编号':'S001','供应商名称':'示例商户','城市':'Lagos','合作状态':'合作中','电话':'+234000000000','资料状态':'待补充'}],material:[{record_id:'recMat1','物料编码':'0001','物料名称':'示例备件','主档来源':'中央仓','主档状态':'有效'}],mapping:[]});
+test('角色校验在业务层执行',()=>assert.throws(()=>validate('material',{fields:{}},source(),{...actor,role:'采购'}),/无权/));
+test('物料前导零保持不变',()=>assert.equal(validate('material',{fields:{'物料编码':'0002','物料名称':'备件','主档来源':'中央仓'}},source(),actor).fields['物料编码'],'0002'));
+test('拒绝重复物料编码',()=>assert.throws(()=>validate('material',{fields:{'物料编码':'0001','物料名称':'备件','主档来源':'中央仓'}},source(),actor),/重复/));
+test('已核实供应商必须有联系人资料',()=>assert.throws(()=>validate('supplier',{fields:{'供应商编号':'S002','供应商名称':'供应商2','资料状态':'已核实'}},source(),actor),/联系方式/));
+test('评价必须有依据',()=>assert.throws(()=>validate('supplier',{fields:{'供应商编号':'S002','供应商名称':'供应商2','质量评价':'好'}},source(),actor),/依据/));
+const mapping=()=>({'关系编号':'M001',supplierId:'recSup1',materialId:'recMat1','供货验证状态':'实际采购过','供货核实依据':'示例凭证'});
+test('采购过不会自动变成技术已确认',()=>assert.equal(validate('mapping',{fields:mapping()},source(),actor).fields['技术适配状态'],'待技术确认'));
+test('仅供应商声称不能成为已确认供货',()=>assert.throws(()=>validate('mapping',{fields:{...mapping(),'供货核实依据':''}},source(),actor),/依据/));
+test('关系使用正式物料记录',()=>assert.throws(()=>validate('mapping',{fields:{...mapping(),materialId:'missing'}},source(),actor),/正式物料/));
+test('修改适配范围后清除原技术确认',()=>{const s=source();s.mapping=[{record_id:'recMap1',...mapping(),supplier_id:'recSup1',material_id:'recMat1','适用工厂':'Ogun','适用设备与产线':'旧设备','供应商产品型号':'A'}];const p=validate('mapping',{recordId:'recMap1',fields:{...mapping(),'适用工厂':'Ogun','适用设备与产线':'新设备','供应商产品型号':'A'}},s,actor);assert.equal(p.fields['技术适配状态'],'待技术确认');assert.equal(p.fields['技术确认日期'],null)});
+test('更新导入空值不清除联系人及照片',()=>{const s=source();s.supplier[0]['供应商附件']=[{token:'photo'}];const p=importPlan('supplier','更新',[{'供应商编号':'S001','电话':''}],s,actor)[0];assert.equal(p.fields['电话'],'+234000000000');assert.equal(p.fields['供应商附件'],undefined)});
+test('导入文件内重复拒绝整批',()=>assert.throws(()=>importPlan('material','新增',[{'物料编码':'02','物料名称':'A','主档来源':'仓库'},{'物料编码':'02','物料名称':'B','主档来源':'仓库'}],source(),actor),/第3行.*重复/));
+test('停用供应商不能新增供货关系',()=>{const s=source();s.supplier[0]['合作状态']='停止合作';assert.throws(()=>validate('mapping',{fields:mapping()},s,actor),/暂停或停止/)});
+test('关键备件不能跳过技术确认',()=>{const s=source();s.mapping=[{record_id:'recMap1','关键备件':'是'}];assert.throws(()=>validate('technical',{recordId:'recMap1',fields:{'技术适配状态':'不适用','技术确认依据':'无'}},s,actor),/关键备件/)});

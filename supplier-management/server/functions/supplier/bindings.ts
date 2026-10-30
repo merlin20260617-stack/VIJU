@@ -1,0 +1,2 @@
+export const PROJECT_ID="ObzrpH65FrtTmkjxZzKjaidkpmb";
+export const TABLES={"Members":{"baseToken":"HHqrbkn3MaRi56sicGDjta4aprb","tableId":"tbl3tfTGiL5HX3ri"},"SupplyMappings":{"baseToken":"HHqrbkn3MaRi56sicGDjta4aprb","tableId":"tblVUA1I09mCSjBg"},"Materials":{"baseToken":"HHqrbkn3MaRi56sicGDjta4aprb","tableId":"tblmiWILbWdpO8V3"},"Suppliers":{"baseToken":"HHqrbkn3MaRi56sicGDjta4aprb","tableId":"tblvrNzOh9ykxc9H"}} as const;
