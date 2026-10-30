@@ -69,18 +69,21 @@ export function validate(action,input,source,actor){
  }
  return {recordId:rid,fields:out};
 }
-export function importPlan(action,mode,rows,source,actor,limit=100){
+export function importPlan(action,mode,rows,source,actor,limit=100,options={}){
  if(!['supplier','material'].includes(action)||!['新增','更新'].includes(mode))fail('导入类型无效');
  authorize(actor.role,action,actor.permissions);if(!Array.isArray(rows)||!rows.length||rows.length>limit)fail(`每次导入1至${limit}条`);
  const key=keys[action],seen=new Set(),plans=[],temp={...source,[action]:[...source[action]]};
  for(let i=0;i<rows.length;i++){
   try{
    const row=rows[i];if(!row||typeof row!=='object')fail('行格式无效');
-   const code=required(row,key),norm=canonical(code);if(seen.has(norm))fail(`${key}在文件内重复`);seen.add(norm);
-   const matches=source[action].filter(r=>canonical(r[key])===norm);if(matches.length>1)fail('底表存在重复编码，须先整理');
+   const externalField=action==='supplier'?'ERP供应商编码':'ERP物料编码',useERP=options.matchBy==='ERP编码';
+   const code=useERP?required(row,externalField):required(row,key),system=useERP?required(row,'来源系统'):'';
+   const norm=canonical(code),dedupe=useERP?canonical(system)+'|'+norm:norm;if(seen.has(dedupe))fail(`${useERP?externalField:key}在文件内重复`);seen.add(dedupe);
+   const matches=source[action].filter(r=>useERP?canonical(r[externalField])===norm&&canonical(r['来源系统'])===canonical(system):canonical(r[key])===norm);if(matches.length>1)fail('底表存在重复编码，须先整理');
    const old=matches[0];if(mode==='新增'&&old)fail('编码已存在，请改用更新');if(mode==='更新'&&!old)fail('编码不存在，请改用新增');
    // Empty import cells do not erase maintained values. Import never submits attachment fields.
    const fields={...(old||{}),...Object.fromEntries(Object.entries(row).filter(([,v])=>clean(v)!==''))};
+   if(useERP&&old)fields[key]=old[key];
    const plan=validate(action,{recordId:old?.record_id,fields},temp,actor);plans.push(plan);
    const merged={...(old||{}),...plan.fields,record_id:old?.record_id||`recImport${i}`};
    if(old)temp[action]=temp[action].map(r=>r.record_id===old.record_id?merged:r);else temp[action].push(merged);

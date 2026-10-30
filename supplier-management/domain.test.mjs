@@ -7,6 +7,8 @@ test('拒绝重复物料编码',()=>assert.throws(()=>validate('material',{field
 test('已核实供应商必须有联系人资料',()=>assert.throws(()=>validate('supplier',{fields:{'供应商编号':'S002','供应商名称':'供应商2','资料状态':'已核实'}},source(),actor),/联系方式/));
 test('评价必须有依据',()=>assert.throws(()=>validate('supplier',{fields:{'供应商编号':'S002','供应商名称':'供应商2','质量评价':'好'}},source(),actor),/依据/));
 const mapping=()=>({'关系编号':'M001',supplierId:'recSup1',materialId:'recMat1','供货验证状态':'实际采购过','供货核实依据':'示例凭证'});
+test('ERP更新按来源系统和外部编码匹配且保留平台编号',()=>{const s=source();Object.assign(s.material[0],{'来源系统':'鼎捷 ERP','ERP物料编码':'ERP0001'});const p=importPlan('material','更新',[{'物料编码':'ERP0001','ERP物料编码':'ERP0001','来源系统':'鼎捷 ERP','物料名称':'更新备件'}],s,actor,100,{matchBy:'ERP编码'})[0];assert.equal(p.recordId,'recMat1');assert.equal(p.fields['物料编码'],'0001');assert.equal(p.fields['物料名称'],'更新备件')});
+test('不同ERP来源不能误匹配相同外部编码',()=>{const s=source();Object.assign(s.material[0],{'来源系统':'其他 ERP','ERP物料编码':'ERP0001'});assert.throws(()=>importPlan('material','更新',[{'ERP物料编码':'ERP0001','来源系统':'鼎捷 ERP'}],s,actor,100,{matchBy:'ERP编码'}),/不存在/)});
 test('采购过不会自动变成技术已确认',()=>assert.equal(validate('mapping',{fields:mapping()},source(),actor).fields['技术适配状态'],'待技术确认'));
 test('仅供应商声称不能成为已确认供货',()=>assert.throws(()=>validate('mapping',{fields:{...mapping(),'供货核实依据':''}},source(),actor),/依据/));
 test('关系使用正式物料记录',()=>assert.throws(()=>validate('mapping',{fields:{...mapping(),materialId:'missing'}},source(),actor),/正式物料/));

@@ -2,6 +2,7 @@ import test from 'node:test';import assert from 'node:assert/strict';
 import {bulkPlan,previewImport} from './server/shared/admin.mjs';import {governancePlan,normalizePermissions} from './server/shared/governance.mjs';import {permissionsFor,LEGACY} from './server/shared/access.mjs';import {validate} from './server/shared/domain.mjs';
 const actor={id:'123456',role:'管理员',roleCode:null,name:'测试管理员',today:'2026-10-30T00:00:00+01:00',permissions:LEGACY['管理员']};
 const source=()=>({supplier:[{record_id:'recSup1','供应商编号':'S001','供应商名称':'测试供应商','国家':'China','城市':'广州','资料状态':'待补充','更新时间':'2026-10-30 10:00:00'}],material:[{record_id:'recMat1','物料编码':'0001','物料名称':'备件','主档来源':'鼎捷ERP'}],mapping:[],qualification:[],evaluation:[],issue:[],role:[],member:[]});
+test('无效月份返回可理解的日期校验错误',()=>assert.throws(()=>governancePlan('issue',{fields:{supplierId:'recSup1','问题编号':'I1','问题主题':'测试','工厂':'Ogun','风险等级':'中','责任人':'采购','计划完成日期':'2026-13-01','状态':'待处理'}},source(),actor),/有效YYYY-MM-DD/));
 test('全球供应商保留中国国家，不强制尼日利亚',()=>assert.equal(validate('supplier',{recordId:'recSup1',fields:source().supplier[0]},source(),actor).fields['国家'],'China'));
 test('空国家不会自动写入Nigeria',()=>assert.equal(validate('supplier',{fields:{'供应商编号':'S002','供应商名称':'全球供应商'}},source(),actor).fields['国家'],''));
 test('批量修改只写选中字段，保留编号和附件',()=>{const p=bulkPlan('supplier',{action:'update',ids:['recSup1'],patch:{'推广阶段':'正式'}},source(),actor);assert.deepEqual(p.plans[0].fields,{'推广阶段':'正式'})});

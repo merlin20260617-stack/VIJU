@@ -22,4 +22,4 @@ export function bulkPlan(target,command,source,actor){
  const previewKey=JSON.stringify({target,action,ids:ordered,patch,versions:rows.map(r=>[r.record_id,r['更新时间'],...Object.keys(patch).sort().map(k=>r[k])]),references:referenced.map(m=>[m.record_id,m.supplier_id,m.material_id]).sort((a,b)=>a[0].localeCompare(b[0]))});
  return {action,ids:ordered,count:rows.length,items,blockers,plans,previewKey};
 }
-export function previewImport(target,command,source,actor){if(!has(actor,'admin.import'))fail('当前角色无后台导入权限');return importPlan(target,command.mode,command.rows,source,actor,2000)}
+export function previewImport(target,command,source,actor){if(!has(actor,'admin.import'))fail('当前角色无后台导入权限');return importPlan(target,command.mode,command.rows,source,actor,2000,{matchBy:command.matchBy})}

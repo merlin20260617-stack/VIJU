@@ -63,7 +63,7 @@ export default defineFunction({input,output,handler:async(p,ctx)=>{
   let plans;
   if(p.operation==='import'){
    if(!['supplier','material'].includes(target))reject('仅支持供应商和物料资料导入');
-   plans=importPlan(target,command!.mode,command!.rows,source,actor);
+   plans=importPlan(target,command!.mode,command!.rows,source,actor,100,{matchBy:command!.matchBy});
    if(command!.preview!==false)return {payload:JSON.stringify({status:'preview',count:plans.length,plans})};
   }else {if(!['supplier','material','mapping','technical'].includes(target))reject('请选择正确业务操作');plans=[validate(target,command!,source,actor)];}
   const creates=plans.filter(r=>!r.recordId),updates=plans.filter(r=>r.recordId);
