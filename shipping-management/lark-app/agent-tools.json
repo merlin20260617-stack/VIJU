@@ -1,0 +1,15 @@
+{
+  "exclude": [
+    "whoami",
+    "shipping",
+    "baseFactories",
+    "baseWarehouses",
+    "baseProducts",
+    "baseCustomers",
+    "baseOrders",
+    "baseBatches",
+    "baseOpening",
+    "baseEvents",
+    "baseReceipts"
+  ]
+}

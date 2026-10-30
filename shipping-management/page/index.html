@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VIJU · 成品仓发货管理</title><link rel="stylesheet" href="/page/style.css"></head>
+<body><aside><div class="brand">VIJU<span>WAREHOUSE OPERATIONS</span></div><div class="label">成品仓 · 发货管理</div><nav id="nav"></nav><div class="side-note">所有数量均以 carton / 箱计量<br>生产完成满24小时可发货</div></aside>
+<main><header><div><div class="eyebrow">VIJU / SHIPPING</div><h1 id="title">发货工作台</h1></div><div class="header-actions"><button id="fullscreen">全屏看板</button><button id="seed">载入示例数据</button></div></header>
+<div class="notice">本地功能预览 · 数据仅保存在当前浏览器，未连接 Lark。请使用示例或脱敏数据；角色切换仅用于验证界面。</div>
+<section class="toolbar"><label>日期<input type="date" id="date"></label><label>工厂<select id="factory"></select></label><label>仓库<select id="warehouse"></select></label><label>预览角色<select id="role"><option value="admin">管理员</option><option value="warehouse">仓管员</option><option value="viewer">只读</option></select></label><span id="clock"></span></section>
+<div id="metrics" class="metrics"></div><div id="content"></div></main>
+<dialog id="dialog"><div class="dialog-head"><h2 id="dialog-title"></h2><button id="close" aria-label="关闭">×</button></div><div id="dialog-content"></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div><script type="module" src="/page/app.mjs"></script></body></html>

@@ -1,0 +1,113 @@
+{
+  "status": "design-only; no live catalog IDs",
+  "unit": "carton",
+  "timezone": "Africa/Lagos",
+  "tables": {
+    "Factories": {
+      "key": "code",
+      "fields": {
+        "code": "text unique",
+        "name": "text required"
+      }
+    },
+    "Warehouses": {
+      "key": "code",
+      "fields": {
+        "code": "text unique",
+        "name": "text required",
+        "factory": "Factories relation"
+      }
+    },
+    "Products": {
+      "key": "code",
+      "fields": {
+        "code": "text unique",
+        "name": "text required",
+        "pcsPerCarton": "positive integer",
+        "cartonsPerPallet": "positive integer"
+      }
+    },
+    "Customers": {
+      "key": "code",
+      "fields": {
+        "code": "text unique",
+        "name": "text required"
+      }
+    },
+    "Orders": {
+      "key": "id",
+      "fields": {
+        "number": "text unique",
+        "date": "business date",
+        "customer": "Customers relation",
+        "warehouse": "Warehouses relation",
+        "sequence": "positive integer",
+        "status": "pending | completed",
+        "completedAt": "UTC timestamp nullable",
+        "version": "integer"
+      }
+    },
+    "OrderLines": {
+      "key": "id",
+      "fields": {
+        "order": "Orders relation",
+        "product": "Products relation",
+        "nameSnapshot": "text",
+        "quantity": "positive integer cartons",
+        "pcsPerCartonSnapshot": "positive integer",
+        "cartonsPerPalletSnapshot": "positive integer"
+      }
+    },
+    "ProductionBatches": {
+      "key": "id",
+      "fields": {
+        "reference": "text unique",
+        "warehouse": "Warehouses relation",
+        "product": "Products relation",
+        "quantity": "positive integer cartons",
+        "producedAt": "UTC timestamp",
+        "availableAt": "producedAt + 86400000 ms"
+      }
+    },
+    "OpeningBalances": {
+      "key": "warehouse+product",
+      "fields": {
+        "reference": "text unique",
+        "warehouse": "Warehouses relation",
+        "product": "Products relation",
+        "quantity": "positive integer cartons"
+      }
+    },
+    "DispatchEvents": {
+      "key": "id",
+      "fields": {
+        "order": "Orders relation",
+        "action": "complete | withdraw",
+        "quantitySnapshot": "JSON",
+        "actor": "trusted Lark user",
+        "occurredAt": "UTC timestamp",
+        "reason": "text required for withdraw",
+        "requestId": "unique text"
+      }
+    },
+    "AccessRoles": {
+      "key": "user",
+      "fields": {
+        "user": "Lark member",
+        "role": "admin | warehouse | viewer",
+        "warehouses": "Warehouses relations"
+      }
+    },
+    "MutationReceipts": {
+      "key": "requestId",
+      "fields": {
+        "requestId": "unique text",
+        "actor": "Lark member",
+        "fingerprint": "text",
+        "result": "JSON",
+        "version": "integer"
+      }
+    }
+  },
+  "transactionRequirement": "Complete/withdraw, stock allocation and receipt must be one atomic conditional mutation. If the chosen Base capability cannot provide this, live dispatch must stay disabled until a supported serialization/transaction design is verified."
+}

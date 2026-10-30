@@ -1,0 +1,12 @@
+node_modules/
+.base-database-cli/
+.env*
+coverage/
+*.log
+tests/fixtures/
+.sites-runtime/
+.wrangler/
+.vinext/
+.next/
+dist/
+*.tsbuildinfo

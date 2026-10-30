@@ -1,0 +1,871 @@
+{
+  "baseAppUrl": "https://qjpb2ivmka4y.jp.larksuite.com/baseapp/IJvUpRVOmrzZu1jRqiRjN8zYpye?mode=edit",
+  "tables": [
+    {
+      "baseToken": "VhJlbWRcqayOHzsUEvTjMXQ2pue",
+      "fields": {
+        "CartonsPerPallet": {
+          "baseType": "Number",
+          "id": "fldBfsd051",
+          "name": "CartonsPerPallet",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "Code": {
+          "baseType": "Text",
+          "id": "fldL9b05zw",
+          "name": "Code",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "Name": {
+          "baseType": "Text",
+          "id": "fldcI5Tavs",
+          "name": "Name",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "PcsPerCarton": {
+          "baseType": "Number",
+          "id": "fldwk4LRB0",
+          "name": "PcsPerCarton",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "SyncVersion": {
+          "baseType": "Text",
+          "id": "fldtOYkSkx",
+          "name": "SyncVersion",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tblH3qsRwSrLqarK",
+      "name": "Products"
+    },
+    {
+      "baseToken": "VhJlbWRcqayOHzsUEvTjMXQ2pue",
+      "fields": {
+        "Details": {
+          "baseType": "Text",
+          "id": "fldzJSrhTs",
+          "name": "Details",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "RequestKey": {
+          "baseType": "Text",
+          "id": "fldSOjCM8m",
+          "name": "RequestKey",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "Status": {
+          "allOptions": [
+            {
+              "id": "optI4kmUNA",
+              "name": "Pending"
+            },
+            {
+              "id": "optK5Z1BPa",
+              "name": "Synced"
+            },
+            {
+              "id": "optRR2FZh3",
+              "name": "Review"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fld6FADfOD",
+          "name": "Status",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optI4kmUNA",
+                "name": "Pending"
+              },
+              {
+                "id": "optK5Z1BPa",
+                "name": "Synced"
+              },
+              {
+                "id": "optRR2FZh3",
+                "name": "Review"
+              }
+            ]
+          }
+        },
+        "TransactionVersion": {
+          "baseType": "Text",
+          "id": "fldEggtA8v",
+          "name": "TransactionVersion",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tblHrvqwf0UT8ACW",
+      "name": "SyncReceipts"
+    },
+    {
+      "baseToken": "VhJlbWRcqayOHzsUEvTjMXQ2pue",
+      "fields": {
+        "Name": {
+          "baseType": "Text",
+          "id": "fldhEaBoFu",
+          "name": "Name",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "Role": {
+          "allOptions": [
+            {
+              "id": "optDhw3L17",
+              "name": "Admin"
+            },
+            {
+              "id": "optsWCaP1l",
+              "name": "Warehouse"
+            },
+            {
+              "id": "optzLt5iTq",
+              "name": "Viewer"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldhuaMMBz",
+          "name": "Role",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optDhw3L17",
+                "name": "Admin"
+              },
+              {
+                "id": "optsWCaP1l",
+                "name": "Warehouse"
+              },
+              {
+                "id": "optzLt5iTq",
+                "name": "Viewer"
+              }
+            ]
+          }
+        },
+        "User": {
+          "baseType": "User",
+          "id": "fld63SwFOa",
+          "name": "User",
+          "nullable": true,
+          "sqlType": {
+            "kind": "USER"
+          }
+        },
+        "WarehouseCodes": {
+          "baseType": "Text",
+          "id": "flddKZM0ky",
+          "name": "WarehouseCodes",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tblLu3RmaUUNaxUR",
+      "name": "AccessRoles"
+    },
+    {
+      "baseToken": "VhJlbWRcqayOHzsUEvTjMXQ2pue",
+      "fields": {
+        "Code": {
+          "baseType": "Text",
+          "id": "flddU0FpZe",
+          "name": "Code",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "FactoryCode": {
+          "baseType": "Text",
+          "id": "fldIDRefFb",
+          "name": "FactoryCode",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "Name": {
+          "baseType": "Text",
+          "id": "fldb7kfEvc",
+          "name": "Name",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "SyncVersion": {
+          "baseType": "Text",
+          "id": "fldgZkj704",
+          "name": "SyncVersion",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tblNIVCyErgaKEr9",
+      "name": "Warehouses"
+    },
+    {
+      "baseToken": "VhJlbWRcqayOHzsUEvTjMXQ2pue",
+      "fields": {
+        "CompletedAt": {
+          "baseType": "DateTime",
+          "id": "fldVglupsV",
+          "name": "CompletedAt",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "CustomerCode": {
+          "baseType": "Text",
+          "id": "fldzJziHVi",
+          "name": "CustomerCode",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "LinesJson": {
+          "baseType": "Text",
+          "id": "flds0WmYFy",
+          "name": "LinesJson",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "OrderDate": {
+          "baseType": "Text",
+          "id": "fldiKE7Z8K",
+          "name": "OrderDate",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "OrderKey": {
+          "baseType": "Text",
+          "id": "fldqQ4H7nZ",
+          "name": "OrderKey",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "OrderNumber": {
+          "baseType": "Text",
+          "id": "fldVporNWE",
+          "name": "OrderNumber",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "Sequence": {
+          "baseType": "Number",
+          "id": "fldj86NibA",
+          "name": "Sequence",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "Status": {
+          "allOptions": [
+            {
+              "id": "optAmdFswu",
+              "name": "Pending"
+            },
+            {
+              "id": "optvC2TZJi",
+              "name": "Completed"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fld1K3laWc",
+          "name": "Status",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optAmdFswu",
+                "name": "Pending"
+              },
+              {
+                "id": "optvC2TZJi",
+                "name": "Completed"
+              }
+            ]
+          }
+        },
+        "SyncVersion": {
+          "baseType": "Text",
+          "id": "fld5qG2Eq8",
+          "name": "SyncVersion",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "TotalCartons": {
+          "baseType": "Number",
+          "id": "fldCzDV0lX",
+          "name": "TotalCartons",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "WarehouseCode": {
+          "baseType": "Text",
+          "id": "fldnGnDe8p",
+          "name": "WarehouseCode",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tblRY9p3NY6h8SYU",
+      "name": "Orders"
+    },
+    {
+      "baseToken": "VhJlbWRcqayOHzsUEvTjMXQ2pue",
+      "fields": {
+        "AvailableAt": {
+          "baseType": "DateTime",
+          "id": "fldvNVrKV3",
+          "name": "AvailableAt",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "BatchKey": {
+          "baseType": "Text",
+          "id": "fldw8UWzgV",
+          "name": "BatchKey",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "ProducedAt": {
+          "baseType": "DateTime",
+          "id": "fldahhaPan",
+          "name": "ProducedAt",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "ProductCode": {
+          "baseType": "Text",
+          "id": "fldOLQ6aG2",
+          "name": "ProductCode",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "Quantity": {
+          "baseType": "Number",
+          "id": "fld6UFCNxX",
+          "name": "Quantity",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "Reference": {
+          "baseType": "Text",
+          "id": "fldViqpWkg",
+          "name": "Reference",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "SyncVersion": {
+          "baseType": "Text",
+          "id": "fldvyZWCSN",
+          "name": "SyncVersion",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "WarehouseCode": {
+          "baseType": "Text",
+          "id": "fld3IrdZid",
+          "name": "WarehouseCode",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tblXNoJBWqGIoWeL",
+      "name": "ProductionBatches"
+    },
+    {
+      "baseToken": "VhJlbWRcqayOHzsUEvTjMXQ2pue",
+      "fields": {
+        "Active": {
+          "baseType": "Checkbox",
+          "id": "fldPm564Mk",
+          "name": "Active",
+          "nullable": true,
+          "sqlType": {
+            "kind": "BOOL"
+          }
+        },
+        "CartonsPerPallet": {
+          "baseType": "Number",
+          "id": "fldPH4M9qw",
+          "name": "CartonsPerPallet",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "LineKey": {
+          "baseType": "Text",
+          "id": "fldN0ESNBn",
+          "name": "LineKey",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "OrderDate": {
+          "baseType": "Text",
+          "id": "fldrtNN1NS",
+          "name": "OrderDate",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "OrderKey": {
+          "baseType": "Text",
+          "id": "fld1wrsQWi",
+          "name": "OrderKey",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "PcsPerCarton": {
+          "baseType": "Number",
+          "id": "fldUdvh0nE",
+          "name": "PcsPerCarton",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "ProductCode": {
+          "baseType": "Text",
+          "id": "fldeeruTDx",
+          "name": "ProductCode",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "ProductName": {
+          "baseType": "Text",
+          "id": "fldr1uT7sk",
+          "name": "ProductName",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "Quantity": {
+          "baseType": "Number",
+          "id": "fldoxh6SXp",
+          "name": "Quantity",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "SyncVersion": {
+          "baseType": "Text",
+          "id": "fldtUkOwFQ",
+          "name": "SyncVersion",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "WarehouseCode": {
+          "baseType": "Text",
+          "id": "fldEnYqamp",
+          "name": "WarehouseCode",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tblYzZE0uOoADVpO",
+      "name": "OrderLines"
+    },
+    {
+      "baseToken": "VhJlbWRcqayOHzsUEvTjMXQ2pue",
+      "fields": {
+        "Action": {
+          "allOptions": [
+            {
+              "id": "optoHk46Us",
+              "name": "Complete"
+            },
+            {
+              "id": "opti2E4cDI",
+              "name": "Withdraw"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldcWz96Y5",
+          "name": "Action",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optoHk46Us",
+                "name": "Complete"
+              },
+              {
+                "id": "opti2E4cDI",
+                "name": "Withdraw"
+              }
+            ]
+          }
+        },
+        "ActorId": {
+          "baseType": "Text",
+          "id": "fldo8txEHX",
+          "name": "ActorId",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "EventKey": {
+          "baseType": "Text",
+          "id": "fldd0NNn3U",
+          "name": "EventKey",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "OccurredAt": {
+          "baseType": "DateTime",
+          "id": "fldxVt5krw",
+          "name": "OccurredAt",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "OrderKeys": {
+          "baseType": "Text",
+          "id": "fldlcQNjhJ",
+          "name": "OrderKeys",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "PayloadJson": {
+          "baseType": "Text",
+          "id": "fld9XOALRn",
+          "name": "PayloadJson",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "Reason": {
+          "baseType": "Text",
+          "id": "fldEcvLDem",
+          "name": "Reason",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "SyncVersion": {
+          "baseType": "Text",
+          "id": "fldK3Ij1x4",
+          "name": "SyncVersion",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tblfS3H5nk77ox5K",
+      "name": "DispatchEvents"
+    },
+    {
+      "baseToken": "VhJlbWRcqayOHzsUEvTjMXQ2pue",
+      "fields": {
+        "Code": {
+          "baseType": "Text",
+          "id": "fldPA8iN2V",
+          "name": "Code",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "Name": {
+          "baseType": "Text",
+          "id": "fld7sIzI01",
+          "name": "Name",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "SyncVersion": {
+          "baseType": "Text",
+          "id": "fldspPY2Ws",
+          "name": "SyncVersion",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tblhLYgblD8WuWwY",
+      "name": "Customers"
+    },
+    {
+      "baseToken": "VhJlbWRcqayOHzsUEvTjMXQ2pue",
+      "fields": {
+        "ProductCode": {
+          "baseType": "Text",
+          "id": "fldENfio0L",
+          "name": "ProductCode",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "Quantity": {
+          "baseType": "Number",
+          "id": "fldolIoq7q",
+          "name": "Quantity",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "Reference": {
+          "baseType": "Text",
+          "id": "fldLW1NJul",
+          "name": "Reference",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "SyncVersion": {
+          "baseType": "Text",
+          "id": "flds1j3opl",
+          "name": "SyncVersion",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "WarehouseCode": {
+          "baseType": "Text",
+          "id": "fld038JhF5",
+          "name": "WarehouseCode",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tblocOxZUuHki3Uv",
+      "name": "OpeningBalances"
+    },
+    {
+      "baseToken": "VhJlbWRcqayOHzsUEvTjMXQ2pue",
+      "fields": {
+        "Code": {
+          "baseType": "Text",
+          "id": "fldQ9v4Bv9",
+          "name": "Code",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "Name": {
+          "baseType": "Text",
+          "id": "fldFrpOnYB",
+          "name": "Name",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "SyncVersion": {
+          "baseType": "Text",
+          "id": "fldcGmCK2l",
+          "name": "SyncVersion",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tblzii8Fs5jkZLoo",
+      "name": "Factories"
+    }
+  ]
+}

@@ -1,0 +1,410 @@
+{
+  "tables": [
+    {
+      "name": "Factories",
+      "fields": [
+        {
+          "name": "Code",
+          "type": "text"
+        },
+        {
+          "name": "Name",
+          "type": "text"
+        },
+        {
+          "name": "SyncVersion",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "Warehouses",
+      "fields": [
+        {
+          "name": "Code",
+          "type": "text"
+        },
+        {
+          "name": "Name",
+          "type": "text"
+        },
+        {
+          "name": "FactoryCode",
+          "type": "text"
+        },
+        {
+          "name": "SyncVersion",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "fields": [
+        {
+          "name": "Code",
+          "type": "text"
+        },
+        {
+          "name": "Name",
+          "type": "text"
+        },
+        {
+          "name": "PcsPerCarton",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 0
+          }
+        },
+        {
+          "name": "CartonsPerPallet",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 0
+          }
+        },
+        {
+          "name": "SyncVersion",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "fields": [
+        {
+          "name": "Code",
+          "type": "text"
+        },
+        {
+          "name": "Name",
+          "type": "text"
+        },
+        {
+          "name": "SyncVersion",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "fields": [
+        {
+          "name": "OrderNumber",
+          "type": "text"
+        },
+        {
+          "name": "OrderKey",
+          "type": "text"
+        },
+        {
+          "name": "OrderDate",
+          "type": "text"
+        },
+        {
+          "name": "CustomerCode",
+          "type": "text"
+        },
+        {
+          "name": "WarehouseCode",
+          "type": "text"
+        },
+        {
+          "name": "Sequence",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 0
+          }
+        },
+        {
+          "name": "Status",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "Pending"
+            },
+            {
+              "name": "Completed"
+            }
+          ]
+        },
+        {
+          "name": "TotalCartons",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 0
+          }
+        },
+        {
+          "name": "LinesJson",
+          "type": "text"
+        },
+        {
+          "name": "CompletedAt",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd HH:mm"
+          }
+        },
+        {
+          "name": "SyncVersion",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "OrderLines",
+      "fields": [
+        {
+          "name": "LineKey",
+          "type": "text"
+        },
+        {
+          "name": "OrderKey",
+          "type": "text"
+        },
+        {
+          "name": "ProductCode",
+          "type": "text"
+        },
+        {
+          "name": "ProductName",
+          "type": "text"
+        },
+        {
+          "name": "Quantity",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 0
+          }
+        },
+        {
+          "name": "PcsPerCarton",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 0
+          }
+        },
+        {
+          "name": "CartonsPerPallet",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 0
+          }
+        },
+        {
+          "name": "WarehouseCode",
+          "type": "text"
+        },
+        {
+          "name": "OrderDate",
+          "type": "text"
+        },
+        {
+          "name": "SyncVersion",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "ProductionBatches",
+      "fields": [
+        {
+          "name": "Reference",
+          "type": "text"
+        },
+        {
+          "name": "BatchKey",
+          "type": "text"
+        },
+        {
+          "name": "WarehouseCode",
+          "type": "text"
+        },
+        {
+          "name": "ProductCode",
+          "type": "text"
+        },
+        {
+          "name": "Quantity",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 0
+          }
+        },
+        {
+          "name": "ProducedAt",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd HH:mm"
+          }
+        },
+        {
+          "name": "AvailableAt",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd HH:mm"
+          }
+        },
+        {
+          "name": "SyncVersion",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "OpeningBalances",
+      "fields": [
+        {
+          "name": "Reference",
+          "type": "text"
+        },
+        {
+          "name": "WarehouseCode",
+          "type": "text"
+        },
+        {
+          "name": "ProductCode",
+          "type": "text"
+        },
+        {
+          "name": "Quantity",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 0
+          }
+        },
+        {
+          "name": "SyncVersion",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "AccessRoles",
+      "fields": [
+        {
+          "name": "Name",
+          "type": "text"
+        },
+        {
+          "name": "User",
+          "type": "user",
+          "multiple": false
+        },
+        {
+          "name": "Role",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "Admin"
+            },
+            {
+              "name": "Warehouse"
+            },
+            {
+              "name": "Viewer"
+            }
+          ]
+        },
+        {
+          "name": "WarehouseCodes",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "DispatchEvents",
+      "fields": [
+        {
+          "name": "EventKey",
+          "type": "text"
+        },
+        {
+          "name": "OrderKeys",
+          "type": "text"
+        },
+        {
+          "name": "Action",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "Complete"
+            },
+            {
+              "name": "Withdraw"
+            }
+          ]
+        },
+        {
+          "name": "ActorId",
+          "type": "text"
+        },
+        {
+          "name": "OccurredAt",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd HH:mm"
+          }
+        },
+        {
+          "name": "Reason",
+          "type": "text"
+        },
+        {
+          "name": "PayloadJson",
+          "type": "text"
+        },
+        {
+          "name": "SyncVersion",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "SyncReceipts",
+      "fields": [
+        {
+          "name": "RequestKey",
+          "type": "text"
+        },
+        {
+          "name": "TransactionVersion",
+          "type": "text"
+        },
+        {
+          "name": "Status",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "Pending"
+            },
+            {
+              "name": "Synced"
+            },
+            {
+              "name": "Review"
+            }
+          ]
+        },
+        {
+          "name": "Details",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}

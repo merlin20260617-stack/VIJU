@@ -1,0 +1,29 @@
+{
+  "configVersion": 1,
+  "template": {
+    "name": "database-starter",
+    "version": 2
+  },
+  "larkProfile": "it-development",
+  "name": "viju-shipping-management",
+  "appToken": "IJvUpRVOmrzZu1jRqiRjN8zYpye",
+  "bindings": {
+    "MAIN_BASE": {
+      "type": "base",
+      "baseToken": "VhJlbWRcqayOHzsUEvTjMXQ2pue",
+      "tableIds": [
+        "tblzii8Fs5jkZLoo",
+        "tblNIVCyErgaKEr9",
+        "tblH3qsRwSrLqarK",
+        "tblhLYgblD8WuWwY",
+        "tblRY9p3NY6h8SYU",
+        "tblYzZE0uOoADVpO",
+        "tblXNoJBWqGIoWeL",
+        "tblocOxZUuHki3Uv",
+        "tblLu3RmaUUNaxUR",
+        "tblfS3H5nk77ox5K",
+        "tblHrvqwf0UT8ACW"
+      ]
+    }
+  }
+}
