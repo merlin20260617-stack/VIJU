@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.base-database-cli/
+.env
+.env.*
+*.tsbuildinfo

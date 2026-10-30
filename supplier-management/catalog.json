@@ -1,0 +1,1901 @@
+{
+  "baseAppUrl": "https://qjpb2ivmka4y.jp.larksuite.com/baseapp/ObzrpH65FrtTmkjxZzKjaidkpmb?mode=edit",
+  "tables": [
+    {
+      "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+      "fields": {
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "成员姓名": {
+          "baseType": "Text",
+          "id": "fldGW67C3Y",
+          "name": "成员姓名",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "状态": {
+          "allOptions": [
+            {
+              "id": "optg32gbiH",
+              "name": "启用"
+            },
+            {
+              "id": "opt31sktj2",
+              "name": "停用"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldMLxpgM5",
+          "name": "状态",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optg32gbiH",
+                "name": "启用"
+              },
+              {
+                "id": "opt31sktj2",
+                "name": "停用"
+              }
+            ]
+          }
+        },
+        "用户": {
+          "baseType": "User",
+          "id": "fldj1bJt4w",
+          "name": "用户",
+          "nullable": true,
+          "sqlType": {
+            "kind": "USER"
+          }
+        },
+        "角色": {
+          "allOptions": [
+            {
+              "id": "opt5U7HBri",
+              "name": "管理员"
+            },
+            {
+              "id": "optggTl5Rx",
+              "name": "采购"
+            },
+            {
+              "id": "optVhWx2ga",
+              "name": "中央仓"
+            },
+            {
+              "id": "opt5qLJURs",
+              "name": "技术"
+            },
+            {
+              "id": "optE4n548C",
+              "name": "只读"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fld1RPXiAW",
+          "name": "角色",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "opt5U7HBri",
+                "name": "管理员"
+              },
+              {
+                "id": "optggTl5Rx",
+                "name": "采购"
+              },
+              {
+                "id": "optVhWx2ga",
+                "name": "中央仓"
+              },
+              {
+                "id": "opt5qLJURs",
+                "name": "技术"
+              },
+              {
+                "id": "optE4n548C",
+                "name": "只读"
+              }
+            ]
+          }
+        },
+        "角色编码": {
+          "baseType": "Text",
+          "id": "fld6mec9NW",
+          "name": "角色编码",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tbl3tfTGiL5HX3ri",
+      "name": "Members"
+    },
+    {
+      "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+      "fields": {
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "启用": {
+          "baseType": "Checkbox",
+          "id": "fldawdbxAm",
+          "name": "启用",
+          "nullable": true,
+          "sqlType": {
+            "kind": "BOOL"
+          }
+        },
+        "更新时间": {
+          "baseType": "ModifiedTime",
+          "id": "fldoWKfmd2",
+          "name": "更新时间",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "权限代码": {
+          "baseType": "Text",
+          "id": "fld2Xu2ha1",
+          "name": "权限代码",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "角色名称": {
+          "baseType": "Text",
+          "id": "fld5HRidxH",
+          "name": "角色名称",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "角色编码": {
+          "baseType": "Text",
+          "id": "fldKj1bQP4",
+          "name": "角色编码",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tbl4Q50vzfXmmz35",
+      "name": "Roles"
+    },
+    {
+      "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+      "fields": {
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "供应商": {
+          "baseType": "Link",
+          "id": "fldoluPVWk",
+          "name": "供应商",
+          "nullable": true,
+          "reference": {
+            "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+            "tableId": "tblvrNzOh9ykxc9H"
+          },
+          "sqlType": {
+            "element": {
+              "kind": "TEXT"
+            },
+            "kind": "ARRAY"
+          }
+        },
+        "审核依据": {
+          "baseType": "Text",
+          "id": "fld0YcvB0A",
+          "name": "审核依据",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "审核状态": {
+          "allOptions": [
+            {
+              "id": "optgPTGujC",
+              "name": "待审核"
+            },
+            {
+              "id": "optGllGXYu",
+              "name": "通过"
+            },
+            {
+              "id": "opt06RB3IP",
+              "name": "不通过"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldh5UGQCR",
+          "name": "审核状态",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optgPTGujC",
+                "name": "待审核"
+              },
+              {
+                "id": "optGllGXYu",
+                "name": "通过"
+              },
+              {
+                "id": "opt06RB3IP",
+                "name": "不通过"
+              }
+            ]
+          }
+        },
+        "操作人": {
+          "baseType": "Text",
+          "id": "fldmiVfCwb",
+          "name": "操作人",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "更新时间": {
+          "baseType": "ModifiedTime",
+          "id": "fldS9LcRwD",
+          "name": "更新时间",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "有效期": {
+          "baseType": "DateTime",
+          "id": "fldMwUbgzb",
+          "name": "有效期",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "维护负责人": {
+          "baseType": "Text",
+          "id": "fld1LUYc5k",
+          "name": "维护负责人",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "证照编号": {
+          "baseType": "Text",
+          "id": "fldsxC0OLj",
+          "name": "证照编号",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "资质名称": {
+          "baseType": "Text",
+          "id": "fldkD4q69N",
+          "name": "资质名称",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "资质类型": {
+          "allOptions": [
+            {
+              "id": "optLOgV3Sj",
+              "name": "企业登记"
+            },
+            {
+              "id": "optlUB9unp",
+              "name": "税务"
+            },
+            {
+              "id": "optpCMdPpq",
+              "name": "质量认证"
+            },
+            {
+              "id": "optVmJetbK",
+              "name": "行业许可"
+            },
+            {
+              "id": "optcwm9MMK",
+              "name": "其他"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fld1sD4uWt",
+          "name": "资质类型",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optLOgV3Sj",
+                "name": "企业登记"
+              },
+              {
+                "id": "optlUB9unp",
+                "name": "税务"
+              },
+              {
+                "id": "optpCMdPpq",
+                "name": "质量认证"
+              },
+              {
+                "id": "optVmJetbK",
+                "name": "行业许可"
+              },
+              {
+                "id": "optcwm9MMK",
+                "name": "其他"
+              }
+            ]
+          }
+        },
+        "资质附件": {
+          "baseType": "Attachment",
+          "id": "fldxvhv7uq",
+          "name": "资质附件",
+          "nullable": true,
+          "sqlType": {
+            "element": {
+              "kind": "FILE"
+            },
+            "kind": "ARRAY"
+          }
+        },
+        "长期有效": {
+          "baseType": "Checkbox",
+          "id": "fldJ5yUd9i",
+          "name": "长期有效",
+          "nullable": true,
+          "sqlType": {
+            "kind": "BOOL"
+          }
+        }
+      },
+      "id": "tblMY7iXVX1TZ08e",
+      "name": "SupplierQualifications"
+    },
+    {
+      "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+      "fields": {
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "供应商": {
+          "baseType": "Link",
+          "id": "fldgdBHYJ3",
+          "name": "供应商",
+          "nullable": true,
+          "reference": {
+            "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+            "tableId": "tblvrNzOh9ykxc9H"
+          },
+          "sqlType": {
+            "element": {
+              "kind": "TEXT"
+            },
+            "kind": "ARRAY"
+          }
+        },
+        "关闭依据": {
+          "baseType": "Text",
+          "id": "fld8o5ywWT",
+          "name": "关闭依据",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "工厂": {
+          "baseType": "Text",
+          "id": "fld2Y6wgEP",
+          "name": "工厂",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "操作人": {
+          "baseType": "Text",
+          "id": "fldMq9MtJ1",
+          "name": "操作人",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "整改措施": {
+          "baseType": "Text",
+          "id": "fldjzSPAKV",
+          "name": "整改措施",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "更新时间": {
+          "baseType": "ModifiedTime",
+          "id": "fldrS6uJGA",
+          "name": "更新时间",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "状态": {
+          "allOptions": [
+            {
+              "id": "optW5PA9N1",
+              "name": "待处理"
+            },
+            {
+              "id": "optUuOLqYG",
+              "name": "整改中"
+            },
+            {
+              "id": "optO59QwmK",
+              "name": "待复核"
+            },
+            {
+              "id": "opts9PvFlj",
+              "name": "已关闭"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldXqWdIvr",
+          "name": "状态",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optW5PA9N1",
+                "name": "待处理"
+              },
+              {
+                "id": "optUuOLqYG",
+                "name": "整改中"
+              },
+              {
+                "id": "optO59QwmK",
+                "name": "待复核"
+              },
+              {
+                "id": "opts9PvFlj",
+                "name": "已关闭"
+              }
+            ]
+          }
+        },
+        "计划完成日期": {
+          "baseType": "DateTime",
+          "id": "fldQHSPLLM",
+          "name": "计划完成日期",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "责任人": {
+          "baseType": "Text",
+          "id": "fldN2Hr16e",
+          "name": "责任人",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "问题主题": {
+          "baseType": "Text",
+          "id": "fldsp3Bunu",
+          "name": "问题主题",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "问题编号": {
+          "baseType": "Text",
+          "id": "fldk0Ii2Gp",
+          "name": "问题编号",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "风险等级": {
+          "allOptions": [
+            {
+              "id": "opt6crWLNa",
+              "name": "低"
+            },
+            {
+              "id": "optl5mCvx9",
+              "name": "中"
+            },
+            {
+              "id": "optdNZHven",
+              "name": "高"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldBdmJO2G",
+          "name": "风险等级",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "opt6crWLNa",
+                "name": "低"
+              },
+              {
+                "id": "optl5mCvx9",
+                "name": "中"
+              },
+              {
+                "id": "optdNZHven",
+                "name": "高"
+              }
+            ]
+          }
+        }
+      },
+      "id": "tblNQpg87Jm5bbNy",
+      "name": "SupplierIssues"
+    },
+    {
+      "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+      "fields": {
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "产品照片与目录": {
+          "baseType": "Attachment",
+          "id": "fldU13UhrB",
+          "name": "产品照片与目录",
+          "nullable": true,
+          "sqlType": {
+            "element": {
+              "kind": "FILE"
+            },
+            "kind": "ARRAY"
+          }
+        },
+        "供应商": {
+          "baseType": "DuplexLink",
+          "id": "fldcHZYhFV",
+          "name": "供应商",
+          "nullable": true,
+          "reference": {
+            "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+            "tableId": "tblvrNzOh9ykxc9H"
+          },
+          "sqlType": {
+            "element": {
+              "kind": "TEXT"
+            },
+            "kind": "ARRAY"
+          }
+        },
+        "供应商产品型号": {
+          "baseType": "Text",
+          "id": "fldOl7OtjB",
+          "name": "供应商产品型号",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "供货核实人": {
+          "baseType": "Text",
+          "id": "fldCdBePI6",
+          "name": "供货核实人",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "供货核实依据": {
+          "baseType": "Text",
+          "id": "fldN255giP",
+          "name": "供货核实依据",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "供货核实日期": {
+          "baseType": "DateTime",
+          "id": "fldoqaAacF",
+          "name": "供货核实日期",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "供货验证状态": {
+          "allOptions": [
+            {
+              "id": "optkcnVhgF",
+              "name": "待核实"
+            },
+            {
+              "id": "optfX1Cd3T",
+              "name": "确认可供应"
+            },
+            {
+              "id": "opt4eV5yod",
+              "name": "实际采购过"
+            },
+            {
+              "id": "optQQVPKCP",
+              "name": "已失效"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldX2r03il",
+          "name": "供货验证状态",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optkcnVhgF",
+                "name": "待核实"
+              },
+              {
+                "id": "optfX1Cd3T",
+                "name": "确认可供应"
+              },
+              {
+                "id": "opt4eV5yod",
+                "name": "实际采购过"
+              },
+              {
+                "id": "optQQVPKCP",
+                "name": "已失效"
+              }
+            ]
+          }
+        },
+        "关系编号": {
+          "baseType": "Text",
+          "id": "fld0BSb9hX",
+          "name": "关系编号",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "创建时间": {
+          "baseType": "CreatedTime",
+          "id": "fldIMv7d1T",
+          "name": "创建时间",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "备注": {
+          "baseType": "Text",
+          "id": "fldmZ98lZN",
+          "name": "备注",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "技术确认人": {
+          "baseType": "Text",
+          "id": "fldrSP8lNS",
+          "name": "技术确认人",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "技术确认依据": {
+          "baseType": "Text",
+          "id": "fldVucTNYQ",
+          "name": "技术确认依据",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "技术确认日期": {
+          "baseType": "DateTime",
+          "id": "fldBsUGTLd",
+          "name": "技术确认日期",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "技术适配状态": {
+          "allOptions": [
+            {
+              "id": "optXi7sJw1",
+              "name": "待技术确认"
+            },
+            {
+              "id": "optqRNsGIe",
+              "name": "已验证适配"
+            },
+            {
+              "id": "optoGAT6GN",
+              "name": "不适配"
+            },
+            {
+              "id": "optXrrnewA",
+              "name": "不适用"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldGpy0JaI",
+          "name": "技术适配状态",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optXi7sJw1",
+                "name": "待技术确认"
+              },
+              {
+                "id": "optqRNsGIe",
+                "name": "已验证适配"
+              },
+              {
+                "id": "optoGAT6GN",
+                "name": "不适配"
+              },
+              {
+                "id": "optXrrnewA",
+                "name": "不适用"
+              }
+            ]
+          }
+        },
+        "更新人": {
+          "baseType": "ModifiedUser",
+          "id": "fld0y8ErR4",
+          "name": "更新人",
+          "nullable": true,
+          "sqlType": {
+            "kind": "USER"
+          }
+        },
+        "更新时间": {
+          "baseType": "ModifiedTime",
+          "id": "fldm9ljYIO",
+          "name": "更新时间",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "物料": {
+          "baseType": "DuplexLink",
+          "id": "fld7EzzvD9",
+          "name": "物料",
+          "nullable": true,
+          "reference": {
+            "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+            "tableId": "tblmiWILbWdpO8V3"
+          },
+          "sqlType": {
+            "element": {
+              "kind": "TEXT"
+            },
+            "kind": "ARRAY"
+          }
+        },
+        "适用工厂": {
+          "baseType": "Text",
+          "id": "fldjNKYOC7",
+          "name": "适用工厂",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "适用设备与产线": {
+          "baseType": "Text",
+          "id": "fldhwvzWYH",
+          "name": "适用设备与产线",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tblVUA1I09mCSjBg",
+      "name": "SupplyMappings"
+    },
+    {
+      "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+      "fields": {
+        "ERP物料编码": {
+          "baseType": "Text",
+          "id": "fldVRYzy1l",
+          "name": "ERP物料编码",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "主档来源": {
+          "baseType": "Text",
+          "id": "fld43bo1iW",
+          "name": "主档来源",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "主档核实日期": {
+          "baseType": "DateTime",
+          "id": "fldQSACZw9",
+          "name": "主档核实日期",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "主档状态": {
+          "allOptions": [
+            {
+              "id": "optj8bXrEK",
+              "name": "有效"
+            },
+            {
+              "id": "optzwuS11F",
+              "name": "停用"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "flds1kkWI3",
+          "name": "主档状态",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optj8bXrEK",
+                "name": "有效"
+              },
+              {
+                "id": "optzwuS11F",
+                "name": "停用"
+              }
+            ]
+          }
+        },
+        "供货关系": {
+          "baseType": "DuplexLink",
+          "id": "fldxoGUp9N",
+          "name": "供货关系",
+          "nullable": true,
+          "reference": {
+            "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+            "tableId": "tblVUA1I09mCSjBg"
+          },
+          "sqlType": {
+            "element": {
+              "kind": "TEXT"
+            },
+            "kind": "ARRAY"
+          }
+        },
+        "关键备件": {
+          "allOptions": [
+            {
+              "id": "optLy10lsb",
+              "name": "是"
+            },
+            {
+              "id": "opt6l97xxi",
+              "name": "否"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "flde7r4BF7",
+          "name": "关键备件",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optLy10lsb",
+                "name": "是"
+              },
+              {
+                "id": "opt6l97xxi",
+                "name": "否"
+              }
+            ]
+          }
+        },
+        "创建时间": {
+          "baseType": "CreatedTime",
+          "id": "fldmmEjRzB",
+          "name": "创建时间",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "单位": {
+          "baseType": "Text",
+          "id": "fldT6vAgTs",
+          "name": "单位",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "型号": {
+          "baseType": "Text",
+          "id": "fldV6S3Q5Q",
+          "name": "型号",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "更新人": {
+          "baseType": "ModifiedUser",
+          "id": "fldAqNtRG4",
+          "name": "更新人",
+          "nullable": true,
+          "sqlType": {
+            "kind": "USER"
+          }
+        },
+        "更新时间": {
+          "baseType": "ModifiedTime",
+          "id": "fldpjkkWej",
+          "name": "更新时间",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "来源系统": {
+          "baseType": "Text",
+          "id": "fldsMBnrax",
+          "name": "来源系统",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "物料名称": {
+          "baseType": "Text",
+          "id": "fld9r4WOam",
+          "name": "物料名称",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "物料照片": {
+          "baseType": "Attachment",
+          "id": "fldLpVoxI9",
+          "name": "物料照片",
+          "nullable": true,
+          "sqlType": {
+            "element": {
+              "kind": "FILE"
+            },
+            "kind": "ARRAY"
+          }
+        },
+        "物料编码": {
+          "baseType": "Text",
+          "id": "fldjBsoqIm",
+          "name": "物料编码",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "类别": {
+          "baseType": "Text",
+          "id": "fldu15L2BE",
+          "name": "类别",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "规格": {
+          "baseType": "Text",
+          "id": "fldXPc0VZl",
+          "name": "规格",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "适用设备与产线": {
+          "baseType": "Text",
+          "id": "fldk5HxdL2",
+          "name": "适用设备与产线",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        }
+      },
+      "id": "tblmiWILbWdpO8V3",
+      "name": "Materials"
+    },
+    {
+      "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+      "fields": {
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "交付得分": {
+          "baseType": "Number",
+          "id": "fldI4vtNJf",
+          "name": "交付得分",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "交付权重": {
+          "baseType": "Number",
+          "id": "flddA2vYaM",
+          "name": "交付权重",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "供应商": {
+          "baseType": "Link",
+          "id": "fldiZRVxlg",
+          "name": "供应商",
+          "nullable": true,
+          "reference": {
+            "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+            "tableId": "tblvrNzOh9ykxc9H"
+          },
+          "sqlType": {
+            "element": {
+              "kind": "TEXT"
+            },
+            "kind": "ARRAY"
+          }
+        },
+        "创建时间": {
+          "baseType": "CreatedTime",
+          "id": "fldtQr0ba7",
+          "name": "创建时间",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "协同得分": {
+          "baseType": "Number",
+          "id": "fldsOPdR72",
+          "name": "协同得分",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "协同权重": {
+          "baseType": "Number",
+          "id": "fldOoTQLZR",
+          "name": "协同权重",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "工厂": {
+          "baseType": "Text",
+          "id": "fldIHInVY6",
+          "name": "工厂",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "更新时间": {
+          "baseType": "ModifiedTime",
+          "id": "fldy0JJFrX",
+          "name": "更新时间",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "服务得分": {
+          "baseType": "Number",
+          "id": "fldS5M5Pwd",
+          "name": "服务得分",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "服务权重": {
+          "baseType": "Number",
+          "id": "fldC3ubROn",
+          "name": "服务权重",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "综合得分": {
+          "baseType": "Number",
+          "id": "fldETbDXdm",
+          "name": "综合得分",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "评价人": {
+          "baseType": "Text",
+          "id": "fldvGjzUZ5",
+          "name": "评价人",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "评价依据": {
+          "baseType": "Text",
+          "id": "fldG7ab3A7",
+          "name": "评价依据",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "评价周期": {
+          "baseType": "Text",
+          "id": "flddXpLWGv",
+          "name": "评价周期",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "评价编号": {
+          "baseType": "Text",
+          "id": "fldwajSGI4",
+          "name": "评价编号",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "质量得分": {
+          "baseType": "Number",
+          "id": "fldnTBECu4",
+          "name": "质量得分",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        },
+        "质量权重": {
+          "baseType": "Number",
+          "id": "fld6IiWIo6",
+          "name": "质量权重",
+          "nullable": true,
+          "sqlType": {
+            "kind": "DOUBLE"
+          }
+        }
+      },
+      "id": "tblrUD5bi7FOotrG",
+      "name": "SupplierEvaluations"
+    },
+    {
+      "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+      "fields": {
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "业务对象": {
+          "baseType": "Text",
+          "id": "fldnhRPLHf",
+          "name": "业务对象",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "创建时间": {
+          "baseType": "CreatedTime",
+          "id": "fld0sC9neo",
+          "name": "创建时间",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "变更摘要": {
+          "baseType": "Text",
+          "id": "fldYlao1wl",
+          "name": "变更摘要",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "影响记录": {
+          "baseType": "Text",
+          "id": "fldttNQset",
+          "name": "影响记录",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "操作人": {
+          "baseType": "Text",
+          "id": "fld41HBV0Q",
+          "name": "操作人",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "操作类型": {
+          "baseType": "Text",
+          "id": "fldcf64QyB",
+          "name": "操作类型",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "操作编号": {
+          "baseType": "Text",
+          "id": "fldDo10Sz4",
+          "name": "操作编号",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "结果": {
+          "allOptions": [
+            {
+              "id": "optMIiwwVN",
+              "name": "待核查"
+            },
+            {
+              "id": "opta3l4HU2",
+              "name": "已完成"
+            },
+            {
+              "id": "opt0rb9XcP",
+              "name": "部分完成"
+            },
+            {
+              "id": "optLzBrEdc",
+              "name": "未执行"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldGyj9VUg",
+          "name": "结果",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optMIiwwVN",
+                "name": "待核查"
+              },
+              {
+                "id": "opta3l4HU2",
+                "name": "已完成"
+              },
+              {
+                "id": "opt0rb9XcP",
+                "name": "部分完成"
+              },
+              {
+                "id": "optLzBrEdc",
+                "name": "未执行"
+              }
+            ]
+          }
+        }
+      },
+      "id": "tbls9DzrIYz1uc7P",
+      "name": "ActivityLog"
+    },
+    {
+      "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+      "fields": {
+        "ERP供应商编码": {
+          "baseType": "Text",
+          "id": "fld1mtIOUC",
+          "name": "ERP供应商编码",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "WhatsApp": {
+          "baseType": "Text",
+          "id": "fldpIq6JAb",
+          "name": "WhatsApp",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "rec_id": {
+          "baseType": "SystemRecordId",
+          "id": "rec_id",
+          "name": "rec_id",
+          "nullable": false,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "主营类别": {
+          "baseType": "Text",
+          "id": "fldDlu7ssv",
+          "name": "主营类别",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "交付与售后评价": {
+          "baseType": "Text",
+          "id": "fld7bgesKz",
+          "name": "交付与售后评价",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "供应商名称": {
+          "baseType": "Text",
+          "id": "fldv9gbTYB",
+          "name": "供应商名称",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "供应商编号": {
+          "baseType": "Text",
+          "id": "fld7rXITFc",
+          "name": "供应商编号",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "供应商附件": {
+          "baseType": "Attachment",
+          "id": "fldxtQa7VX",
+          "name": "供应商附件",
+          "nullable": true,
+          "sqlType": {
+            "element": {
+              "kind": "FILE"
+            },
+            "kind": "ARRAY"
+          }
+        },
+        "供货关系": {
+          "baseType": "DuplexLink",
+          "id": "fld1pyT6sK",
+          "name": "供货关系",
+          "nullable": true,
+          "reference": {
+            "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+            "tableId": "tblVUA1I09mCSjBg"
+          },
+          "sqlType": {
+            "element": {
+              "kind": "TEXT"
+            },
+            "kind": "ARRAY"
+          }
+        },
+        "准入依据": {
+          "baseType": "Text",
+          "id": "fldI7ZAc3q",
+          "name": "准入依据",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "创建时间": {
+          "baseType": "CreatedTime",
+          "id": "fldvAyUadj",
+          "name": "创建时间",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "合作状态": {
+          "allOptions": [
+            {
+              "id": "optva1hgbR",
+              "name": "待核实"
+            },
+            {
+              "id": "optY6bHQw2",
+              "name": "合作中"
+            },
+            {
+              "id": "optBKkoDEl",
+              "name": "暂停合作"
+            },
+            {
+              "id": "optIdnBqIB",
+              "name": "停止合作"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldqlbk0OI",
+          "name": "合作状态",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optva1hgbR",
+                "name": "待核实"
+              },
+              {
+                "id": "optY6bHQw2",
+                "name": "合作中"
+              },
+              {
+                "id": "optBKkoDEl",
+                "name": "暂停合作"
+              },
+              {
+                "id": "optIdnBqIB",
+                "name": "停止合作"
+              }
+            ]
+          }
+        },
+        "合作等级": {
+          "allOptions": [
+            {
+              "id": "opti4HJWYH",
+              "name": "战略"
+            },
+            {
+              "id": "optRIrSSKj",
+              "name": "优选"
+            },
+            {
+              "id": "opt06K8pSu",
+              "name": "合格"
+            },
+            {
+              "id": "optRfLuviF",
+              "name": "观察"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldo1ITWtI",
+          "name": "合作等级",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "opti4HJWYH",
+                "name": "战略"
+              },
+              {
+                "id": "optRIrSSKj",
+                "name": "优选"
+              },
+              {
+                "id": "opt06K8pSu",
+                "name": "合格"
+              },
+              {
+                "id": "optRfLuviF",
+                "name": "观察"
+              }
+            ]
+          }
+        },
+        "国家": {
+          "baseType": "Text",
+          "id": "fldYSUv55q",
+          "name": "国家",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "地址": {
+          "baseType": "Text",
+          "id": "fldzkIDI3M",
+          "name": "地址",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "城市": {
+          "baseType": "Text",
+          "id": "fldUtK8GYZ",
+          "name": "城市",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "推广阶段": {
+          "allOptions": [
+            {
+              "id": "opt4RkgiNC",
+              "name": "试点"
+            },
+            {
+              "id": "optckzD60k",
+              "name": "正式"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldEzKkLrB",
+          "name": "推广阶段",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "opt4RkgiNC",
+                "name": "试点"
+              },
+              {
+                "id": "optckzD60k",
+                "name": "正式"
+              }
+            ]
+          }
+        },
+        "更新人": {
+          "baseType": "ModifiedUser",
+          "id": "fldz0phymJ",
+          "name": "更新人",
+          "nullable": true,
+          "sqlType": {
+            "kind": "USER"
+          }
+        },
+        "更新时间": {
+          "baseType": "ModifiedTime",
+          "id": "fldA5QsBim",
+          "name": "更新时间",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "最近核实日期": {
+          "baseType": "DateTime",
+          "id": "fldw9F3VkH",
+          "name": "最近核实日期",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TIMESTAMP"
+          }
+        },
+        "来源系统": {
+          "baseType": "Text",
+          "id": "fldk15Xxi8",
+          "name": "来源系统",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "生命周期": {
+          "allOptions": [
+            {
+              "id": "optQMJP5k7",
+              "name": "潜在"
+            },
+            {
+              "id": "optIX1RCvW",
+              "name": "待准入"
+            },
+            {
+              "id": "opt1me9dua",
+              "name": "准入审核中"
+            },
+            {
+              "id": "optOJSBLyq",
+              "name": "合格"
+            },
+            {
+              "id": "optLk1LMLi",
+              "name": "暂停"
+            },
+            {
+              "id": "opttTC3iKo",
+              "name": "退出"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldTXGTptW",
+          "name": "生命周期",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optQMJP5k7",
+                "name": "潜在"
+              },
+              {
+                "id": "optIX1RCvW",
+                "name": "待准入"
+              },
+              {
+                "id": "opt1me9dua",
+                "name": "准入审核中"
+              },
+              {
+                "id": "optOJSBLyq",
+                "name": "合格"
+              },
+              {
+                "id": "optLk1LMLi",
+                "name": "暂停"
+              },
+              {
+                "id": "opttTC3iKo",
+                "name": "退出"
+              }
+            ]
+          }
+        },
+        "电话": {
+          "baseType": "Text",
+          "id": "fldkgex6J8",
+          "name": "电话",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "经营范围": {
+          "baseType": "Text",
+          "id": "fldyM2LemZ",
+          "name": "经营范围",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "维护负责人": {
+          "baseType": "Text",
+          "id": "fldgyaGr1R",
+          "name": "维护负责人",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "联系人": {
+          "baseType": "Text",
+          "id": "fldkHcwMk1",
+          "name": "联系人",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "评价依据与问题": {
+          "baseType": "Text",
+          "id": "fldvpi3pE5",
+          "name": "评价依据与问题",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "负责工厂": {
+          "baseType": "Text",
+          "id": "fldrPO2VHS",
+          "name": "负责工厂",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "质量评价": {
+          "baseType": "Text",
+          "id": "fldUFSCcH7",
+          "name": "质量评价",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "资料状态": {
+          "allOptions": [
+            {
+              "id": "optdnpOTFT",
+              "name": "待补充"
+            },
+            {
+              "id": "optEbaI9jF",
+              "name": "已核实"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldzGXPA68",
+          "name": "资料状态",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "optdnpOTFT",
+                "name": "待补充"
+              },
+              {
+                "id": "optEbaI9jF",
+                "name": "已核实"
+              }
+            ]
+          }
+        },
+        "风险依据": {
+          "baseType": "Text",
+          "id": "fldtENWpQu",
+          "name": "风险依据",
+          "nullable": true,
+          "sqlType": {
+            "kind": "TEXT"
+          }
+        },
+        "风险等级": {
+          "allOptions": [
+            {
+              "id": "opt72IsS7G",
+              "name": "未评估"
+            },
+            {
+              "id": "optmMir6P9",
+              "name": "低"
+            },
+            {
+              "id": "optbUdqCiv",
+              "name": "中"
+            },
+            {
+              "id": "optFILA4Ow",
+              "name": "高"
+            }
+          ],
+          "baseType": "SingleSelect",
+          "id": "fldA1PEoi4",
+          "name": "风险等级",
+          "nullable": true,
+          "sqlType": {
+            "kind": "OPTION",
+            "options": [
+              {
+                "id": "opt72IsS7G",
+                "name": "未评估"
+              },
+              {
+                "id": "optmMir6P9",
+                "name": "低"
+              },
+              {
+                "id": "optbUdqCiv",
+                "name": "中"
+              },
+              {
+                "id": "optFILA4Ow",
+                "name": "高"
+              }
+            ]
+          }
+        }
+      },
+      "id": "tblvrNzOh9ykxc9H",
+      "name": "Suppliers"
+    }
+  ]
+}

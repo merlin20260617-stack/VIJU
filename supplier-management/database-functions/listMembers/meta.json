@@ -1,0 +1,15 @@
+{
+  "name": "Members台账查询",
+  "description": "Members台账查询，只读；数据范围按当前成员的真实角色权限在查询中判定。",
+  "meta": {
+    "params": [
+      {
+        "name": "offset",
+        "kind": "INT",
+        "minimum": 0,
+        "maximum": 10000,
+        "description": "固定每页500条，首页0，后续递增500"
+      }
+    ]
+  }
+}

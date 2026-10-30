@@ -1,0 +1,27 @@
+{
+  "configVersion": 1,
+  "template": {
+    "name": "database-starter",
+    "version": 2
+  },
+  "larkProfile": "it-development",
+  "name": "viju-supplier-management",
+  "appToken": "ObzrpH65FrtTmkjxZzKjaidkpmb",
+  "bindings": {
+    "MAIN_BASE": {
+      "type": "base",
+      "baseToken": "HHqrbkn3MaRi56sicGDjta4aprb",
+      "tableIds": [
+        "tbl3tfTGiL5HX3ri",
+        "tblVUA1I09mCSjBg",
+        "tblmiWILbWdpO8V3",
+        "tblvrNzOh9ykxc9H",
+        "tblMY7iXVX1TZ08e",
+        "tblrUD5bi7FOotrG",
+        "tblNQpg87Jm5bbNy",
+        "tbls9DzrIYz1uc7P",
+        "tbl4Q50vzfXmmz35"
+      ]
+    }
+  }
+}

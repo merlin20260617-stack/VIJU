@@ -1,0 +1,71 @@
+{
+  "name": "供应商平台业务操作",
+  "description": "集团成员查询供应商、物料及供货关系，采购维护供应商与供货，中央仓维护物料，技术人员独立确认适配；服务端按本人角色校验，不管理成员权限。",
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "operation": {
+        "type": "string",
+        "enum": [
+          "snapshot",
+          "save",
+          "import",
+          "attach",
+          "bulk",
+          "importPreview",
+          "govern"
+        ],
+        "description": "snapshot只读加载本人有权使用的模块与看板；save维护主数据；import每批提交最多100条；importPreview校验2000行；bulk预览或确认批量修改/受保护删除；govern处理资质、绩效、整改、准入、角色或成员；attach追加附件"
+      },
+      "target": {
+        "description": "固定业务对象；govern使用qualification/evaluation/issue/lifecycle/role/member，其他写操作使用对应主数据；snapshot不传",
+        "type": "string",
+        "enum": [
+          "supplier",
+          "material",
+          "mapping",
+          "technical",
+          "qualification",
+          "evaluation",
+          "issue",
+          "lifecycle",
+          "role",
+          "member"
+        ]
+      },
+      "commandJson": {
+        "description": "save传recordId/fields；import和importPreview传mode(新增/更新)/rows；bulk传action(update/delete)、ids、patch、preview、expectedPreviewKey，删除提交还须confirmation=删除 N 条；attach传recordId/files。ID来自snapshot，不传身份或表ID。",
+        "type": "string",
+        "maxLength": 1500000
+      }
+    },
+    "required": [
+      "operation"
+    ]
+  },
+  "outputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "payload": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "payload"
+    ],
+    "additionalProperties": false
+  },
+  "contract": {
+    "version": 1,
+    "generatorVersion": "1.6.0",
+    "sdkVersion": "0.3.2",
+    "schemaVendor": "zod",
+    "schemaPackageVersion": "4.6.5",
+    "schemaHash": "sha256:37166be8339d5ae8bde2163d80e04e2f1ca4591e5c9e9a6c5ff25d404cf2e2bb",
+    "fidelity": "complete",
+    "mode": "discovery",
+    "warnings": []
+  }
+}

@@ -1,0 +1,847 @@
+{
+  "tables": [
+    {
+      "name": "Suppliers",
+      "fields": [
+        {
+          "name": "供应商编号",
+          "type": "text"
+        },
+        {
+          "name": "供应商名称",
+          "type": "text"
+        },
+        {
+          "name": "国家",
+          "type": "text"
+        },
+        {
+          "name": "城市",
+          "type": "text"
+        },
+        {
+          "name": "地址",
+          "type": "text"
+        },
+        {
+          "name": "联系人",
+          "type": "text"
+        },
+        {
+          "name": "电话",
+          "type": "text"
+        },
+        {
+          "name": "WhatsApp",
+          "type": "text"
+        },
+        {
+          "name": "经营范围",
+          "type": "text"
+        },
+        {
+          "name": "合作状态",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "待核实"
+            },
+            {
+              "name": "合作中"
+            },
+            {
+              "name": "暂停合作"
+            },
+            {
+              "name": "停止合作"
+            }
+          ]
+        },
+        {
+          "name": "资料状态",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "待补充"
+            },
+            {
+              "name": "已核实"
+            }
+          ]
+        },
+        {
+          "name": "负责工厂",
+          "type": "text"
+        },
+        {
+          "name": "维护负责人",
+          "type": "text"
+        },
+        {
+          "name": "最近核实日期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "质量评价",
+          "type": "text"
+        },
+        {
+          "name": "交付与售后评价",
+          "type": "text"
+        },
+        {
+          "name": "评价依据与问题",
+          "type": "text"
+        },
+        {
+          "name": "供应商附件",
+          "type": "attachment"
+        },
+        {
+          "name": "创建时间",
+          "type": "created_at"
+        },
+        {
+          "name": "更新时间",
+          "type": "updated_at"
+        },
+        {
+          "name": "更新人",
+          "type": "updated_by"
+        },
+        {
+          "name": "生命周期",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "潜在"
+            },
+            {
+              "name": "待准入"
+            },
+            {
+              "name": "准入审核中"
+            },
+            {
+              "name": "合格"
+            },
+            {
+              "name": "暂停"
+            },
+            {
+              "name": "退出"
+            }
+          ]
+        },
+        {
+          "name": "合作等级",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "战略"
+            },
+            {
+              "name": "优选"
+            },
+            {
+              "name": "合格"
+            },
+            {
+              "name": "观察"
+            }
+          ]
+        },
+        {
+          "name": "风险等级",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "未评估"
+            },
+            {
+              "name": "低"
+            },
+            {
+              "name": "中"
+            },
+            {
+              "name": "高"
+            }
+          ]
+        },
+        {
+          "name": "风险依据",
+          "type": "text"
+        },
+        {
+          "name": "主营类别",
+          "type": "text"
+        },
+        {
+          "name": "准入依据",
+          "type": "text"
+        },
+        {
+          "name": "来源系统",
+          "type": "text"
+        },
+        {
+          "name": "ERP供应商编码",
+          "type": "text"
+        },
+        {
+          "name": "推广阶段",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "试点"
+            },
+            {
+              "name": "正式"
+            }
+          ],
+          "default_value": [
+            "试点"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Materials",
+      "fields": [
+        {
+          "name": "物料编码",
+          "type": "text"
+        },
+        {
+          "name": "物料名称",
+          "type": "text"
+        },
+        {
+          "name": "类别",
+          "type": "text"
+        },
+        {
+          "name": "规格",
+          "type": "text"
+        },
+        {
+          "name": "型号",
+          "type": "text"
+        },
+        {
+          "name": "单位",
+          "type": "text"
+        },
+        {
+          "name": "适用设备与产线",
+          "type": "text"
+        },
+        {
+          "name": "主档来源",
+          "type": "text"
+        },
+        {
+          "name": "主档状态",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "有效"
+            },
+            {
+              "name": "停用"
+            }
+          ]
+        },
+        {
+          "name": "关键备件",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "是"
+            },
+            {
+              "name": "否"
+            }
+          ]
+        },
+        {
+          "name": "主档核实日期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "物料照片",
+          "type": "attachment"
+        },
+        {
+          "name": "创建时间",
+          "type": "created_at"
+        },
+        {
+          "name": "更新时间",
+          "type": "updated_at"
+        },
+        {
+          "name": "更新人",
+          "type": "updated_by"
+        },
+        {
+          "name": "来源系统",
+          "type": "text"
+        },
+        {
+          "name": "ERP物料编码",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "SupplyMappings",
+      "fields": [
+        {
+          "name": "关系编号",
+          "type": "text"
+        },
+        {
+          "name": "供应商",
+          "type": "link",
+          "link_table": "Suppliers",
+          "bidirectional": true,
+          "bidirectional_link_field_name": "供货关系"
+        },
+        {
+          "name": "物料",
+          "type": "link",
+          "link_table": "Materials",
+          "bidirectional": true,
+          "bidirectional_link_field_name": "供货关系"
+        },
+        {
+          "name": "供应商产品型号",
+          "type": "text"
+        },
+        {
+          "name": "供货验证状态",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "待核实"
+            },
+            {
+              "name": "确认可供应"
+            },
+            {
+              "name": "实际采购过"
+            },
+            {
+              "name": "已失效"
+            }
+          ]
+        },
+        {
+          "name": "供货核实依据",
+          "type": "text"
+        },
+        {
+          "name": "供货核实日期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "供货核实人",
+          "type": "text"
+        },
+        {
+          "name": "适用工厂",
+          "type": "text"
+        },
+        {
+          "name": "适用设备与产线",
+          "type": "text"
+        },
+        {
+          "name": "技术适配状态",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "待技术确认"
+            },
+            {
+              "name": "已验证适配"
+            },
+            {
+              "name": "不适配"
+            },
+            {
+              "name": "不适用"
+            }
+          ]
+        },
+        {
+          "name": "技术确认人",
+          "type": "text"
+        },
+        {
+          "name": "技术确认日期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "技术确认依据",
+          "type": "text"
+        },
+        {
+          "name": "备注",
+          "type": "text"
+        },
+        {
+          "name": "产品照片与目录",
+          "type": "attachment"
+        },
+        {
+          "name": "创建时间",
+          "type": "created_at"
+        },
+        {
+          "name": "更新时间",
+          "type": "updated_at"
+        },
+        {
+          "name": "更新人",
+          "type": "updated_by"
+        }
+      ]
+    },
+    {
+      "name": "Members",
+      "fields": [
+        {
+          "name": "成员姓名",
+          "type": "text"
+        },
+        {
+          "name": "用户",
+          "type": "user",
+          "multiple": false
+        },
+        {
+          "name": "角色",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "管理员"
+            },
+            {
+              "name": "采购"
+            },
+            {
+              "name": "中央仓"
+            },
+            {
+              "name": "技术"
+            },
+            {
+              "name": "只读"
+            }
+          ]
+        },
+        {
+          "name": "状态",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "启用"
+            },
+            {
+              "name": "停用"
+            }
+          ]
+        },
+        {
+          "name": "角色编码",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "name": "SupplierQualifications",
+      "fields": [
+        {
+          "name": "资质名称",
+          "type": "text"
+        },
+        {
+          "name": "供应商",
+          "type": "link",
+          "link_table": "Suppliers"
+        },
+        {
+          "name": "资质类型",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "企业登记"
+            },
+            {
+              "name": "税务"
+            },
+            {
+              "name": "质量认证"
+            },
+            {
+              "name": "行业许可"
+            },
+            {
+              "name": "其他"
+            }
+          ]
+        },
+        {
+          "name": "证照编号",
+          "type": "text"
+        },
+        {
+          "name": "有效期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "长期有效",
+          "type": "checkbox"
+        },
+        {
+          "name": "审核状态",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "待审核"
+            },
+            {
+              "name": "通过"
+            },
+            {
+              "name": "不通过"
+            }
+          ]
+        },
+        {
+          "name": "审核依据",
+          "type": "text"
+        },
+        {
+          "name": "维护负责人",
+          "type": "text"
+        },
+        {
+          "name": "资质附件",
+          "type": "attachment"
+        },
+        {
+          "name": "操作人",
+          "type": "text"
+        },
+        {
+          "name": "更新时间",
+          "type": "updated_at"
+        }
+      ]
+    },
+    {
+      "name": "SupplierEvaluations",
+      "fields": [
+        {
+          "name": "评价编号",
+          "type": "text"
+        },
+        {
+          "name": "供应商",
+          "type": "link",
+          "link_table": "Suppliers"
+        },
+        {
+          "name": "评价周期",
+          "type": "text"
+        },
+        {
+          "name": "工厂",
+          "type": "text"
+        },
+        {
+          "name": "质量得分",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 1
+          }
+        },
+        {
+          "name": "交付得分",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 1
+          }
+        },
+        {
+          "name": "服务得分",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 1
+          }
+        },
+        {
+          "name": "协同得分",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 1
+          }
+        },
+        {
+          "name": "质量权重",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 1
+          }
+        },
+        {
+          "name": "交付权重",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 1
+          }
+        },
+        {
+          "name": "服务权重",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 1
+          }
+        },
+        {
+          "name": "协同权重",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 1
+          }
+        },
+        {
+          "name": "综合得分",
+          "type": "number",
+          "style": {
+            "type": "plain",
+            "precision": 1
+          }
+        },
+        {
+          "name": "评价依据",
+          "type": "text"
+        },
+        {
+          "name": "评价人",
+          "type": "text"
+        },
+        {
+          "name": "创建时间",
+          "type": "created_at"
+        },
+        {
+          "name": "更新时间",
+          "type": "updated_at"
+        }
+      ]
+    },
+    {
+      "name": "SupplierIssues",
+      "fields": [
+        {
+          "name": "问题编号",
+          "type": "text"
+        },
+        {
+          "name": "供应商",
+          "type": "link",
+          "link_table": "Suppliers"
+        },
+        {
+          "name": "问题主题",
+          "type": "text"
+        },
+        {
+          "name": "工厂",
+          "type": "text"
+        },
+        {
+          "name": "风险等级",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "低"
+            },
+            {
+              "name": "中"
+            },
+            {
+              "name": "高"
+            }
+          ]
+        },
+        {
+          "name": "责任人",
+          "type": "text"
+        },
+        {
+          "name": "计划完成日期",
+          "type": "datetime",
+          "style": {
+            "format": "yyyy-MM-dd"
+          }
+        },
+        {
+          "name": "状态",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "待处理"
+            },
+            {
+              "name": "整改中"
+            },
+            {
+              "name": "待复核"
+            },
+            {
+              "name": "已关闭"
+            }
+          ]
+        },
+        {
+          "name": "整改措施",
+          "type": "text"
+        },
+        {
+          "name": "关闭依据",
+          "type": "text"
+        },
+        {
+          "name": "操作人",
+          "type": "text"
+        },
+        {
+          "name": "更新时间",
+          "type": "updated_at"
+        }
+      ]
+    },
+    {
+      "name": "ActivityLog",
+      "fields": [
+        {
+          "name": "操作编号",
+          "type": "text"
+        },
+        {
+          "name": "业务对象",
+          "type": "text"
+        },
+        {
+          "name": "操作类型",
+          "type": "text"
+        },
+        {
+          "name": "操作人",
+          "type": "text"
+        },
+        {
+          "name": "影响记录",
+          "type": "text"
+        },
+        {
+          "name": "变更摘要",
+          "type": "text"
+        },
+        {
+          "name": "结果",
+          "type": "select",
+          "multiple": false,
+          "options": [
+            {
+              "name": "待核查"
+            },
+            {
+              "name": "已完成"
+            },
+            {
+              "name": "部分完成"
+            },
+            {
+              "name": "未执行"
+            }
+          ]
+        },
+        {
+          "name": "创建时间",
+          "type": "created_at"
+        }
+      ]
+    },
+    {
+      "name": "Roles",
+      "fields": [
+        {
+          "name": "角色编码",
+          "type": "text"
+        },
+        {
+          "name": "角色名称",
+          "type": "text"
+        },
+        {
+          "name": "权限代码",
+          "type": "text"
+        },
+        {
+          "name": "启用",
+          "type": "checkbox"
+        },
+        {
+          "name": "更新时间",
+          "type": "updated_at"
+        }
+      ]
+    }
+  ]
+}

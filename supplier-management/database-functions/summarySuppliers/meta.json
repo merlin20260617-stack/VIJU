@@ -1,0 +1,7 @@
+{
+  "name": "Suppliers看板汇总",
+  "description": "Suppliers看板汇总，只读；数据范围按当前成员的真实角色权限在查询中判定。",
+  "meta": {
+    "params": []
+  }
+}
